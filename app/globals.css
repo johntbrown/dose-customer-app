@@ -1,0 +1,278 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --cream: #fbf7ee;
+  --green: #425941;
+  --ink: #22211c;
+  --gold: #b08d57;
+  --sage: #e2e5d4;
+  --paper: #fffdf8;
+  --line: #eee9dc;
+}
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+button,
+a {
+  font: inherit;
+}
+
+.shell {
+  width: min(980px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 40px 0 110px;
+}
+
+.topbar,
+.section-heading,
+.plan-row,
+.hero {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: center;
+}
+
+.topbar {
+  margin-bottom: 28px;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  font-size: clamp(32px, 6vw, 56px);
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: clamp(30px, 5vw, 48px);
+  margin-bottom: 14px;
+}
+
+h3 {
+  font-size: 24px;
+  margin-bottom: 12px;
+}
+
+p {
+  line-height: 1.55;
+}
+
+.eyebrow {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: var(--green);
+  margin-bottom: 10px;
+}
+
+.subtle,
+.label {
+  color: #69675f;
+}
+
+.avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--green);
+  color: white;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+}
+
+.card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 28px;
+  box-shadow: 0 14px 40px rgba(34, 33, 28, 0.05);
+  margin-bottom: 20px;
+}
+
+.hero {
+  background: var(--green);
+  color: white;
+}
+
+.hero .eyebrow {
+  color: var(--sage);
+}
+
+.primary,
+.secondary,
+.text-button {
+  border: 0;
+  cursor: pointer;
+}
+
+.primary {
+  background: var(--paper);
+  color: var(--green);
+  padding: 14px 20px;
+  border-radius: 999px;
+  font-weight: 800;
+}
+
+.secondary {
+  background: var(--sage);
+  color: var(--green);
+  padding: 12px 18px;
+  border-radius: 999px;
+  font-weight: 800;
+}
+
+.text-button {
+  background: transparent;
+  color: var(--green);
+  font-weight: 800;
+}
+
+.grid.two {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.big-number {
+  font-size: 64px;
+  line-height: 1;
+  font-weight: 800;
+  color: var(--green);
+}
+
+.support-copy {
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.plan-row {
+  align-items: stretch;
+  margin-top: 24px;
+}
+
+.plan-row > div {
+  flex: 1;
+  padding: 18px;
+  background: var(--cream);
+  border-radius: 16px;
+}
+
+.label {
+  display: block;
+  font-size: 12px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.timeline {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  position: relative;
+}
+
+.timeline::before {
+  content: "";
+  height: 2px;
+  background: var(--line);
+  left: 20px;
+  right: 20px;
+  top: 19px;
+  position: absolute;
+}
+
+.milestone {
+  position: relative;
+  z-index: 1;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 2px solid var(--line);
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.milestone.active {
+  background: var(--green);
+  border-color: var(--green);
+  color: white;
+}
+
+.reward {
+  background: #f5f0e6;
+}
+
+.bottom-nav {
+  position: fixed;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(720px, calc(100% - 32px));
+  display: flex;
+  justify-content: space-around;
+  gap: 8px;
+  padding: 10px;
+  border-radius: 999px;
+  background: rgba(34, 33, 28, 0.94);
+  backdrop-filter: blur(12px);
+}
+
+.bottom-nav a {
+  color: #d9d5ca;
+  text-decoration: none;
+  padding: 10px 14px;
+  border-radius: 999px;
+  font-size: 14px;
+}
+
+.bottom-nav a.selected {
+  background: var(--paper);
+  color: var(--ink);
+  font-weight: 800;
+}
+
+@media (max-width: 720px) {
+  .grid.two {
+    grid-template-columns: 1fr;
+  }
+
+  .topbar,
+  .hero,
+  .plan-row {
+    align-items: flex-start;
+  }
+
+  .hero,
+  .plan-row {
+    flex-direction: column;
+  }
+
+  .plan-row > div {
+    width: 100%;
+  }
+
+  .bottom-nav a {
+    font-size: 12px;
+    padding: 8px 10px;
+  }
+}
