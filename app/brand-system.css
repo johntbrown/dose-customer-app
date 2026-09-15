@@ -1,0 +1,84 @@
+/* Dose live-theme design system, supplied 2026-09-15. Loaded last and treated as source of truth. */
+:root{
+  --color-background:#FBF7EE;
+  --color-foreground:#000000;
+  --color-primary:#344633;
+  --color-neutral-100:#FBF7EE;
+  --color-neutral-300:#E7E2D7;
+  --color-neutral-500:#CEC6AF;
+  --color-white:#FFFFFF;
+  --color-lowstock:#EE9441;
+  --font-display:Georgia,'Times New Roman',serif;
+  --font-ui:-apple-system,Inter,'Helvetica Neue',Arial,sans-serif;
+  --pill:999px;
+  --card-radius:24px;
+  --space-1:.5rem;
+  --space-2:.75rem;
+  --space-3:1rem;
+  --space-4:1.5rem;
+  --space-5:2rem;
+  --space-6:2.5rem;
+  --space-7:3rem;
+  --space-8:4rem;
+  --cream:#FBF7EE;
+  --paper:#FBF7EE;
+  --green:#344633;
+  --green2:#344633;
+  --ink:#000000;
+  --gold:#000000;
+  --sage:#E7E2D7;
+  --sand:#E7E2D7;
+  --line:#CEC6AF;
+  --muted:#5f5a50;
+  --surface:#FBF7EE;
+  --surface-soft:#E7E2D7;
+  --shadow-soft:none;
+  --shadow-card:none;
+}
+html,body{background:var(--color-background);color:var(--color-foreground);font-family:var(--font-ui)}
+body{font-weight:400;line-height:1.5}
+.appShell{background:var(--color-background);box-shadow:none;max-width:720px}
+button,select,input,textarea{font-family:var(--font-ui)}
+button{transition:transform .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out}
+button:hover{transform:scale(1.03)}
+img{transition:transform .15s ease-in-out}
+button:hover img{transform:scale(1.015)}
+.logo,.welcome h1,.simpleHero h1,.articleHero h1,.todayAction h2,.sectionHead h2,.learningCopy h3,.journeyTimeline h2,.scienceProof h2,.trackingCard>h2,.productInfo h2,.bundleCard h2,.planProduct h2,.nextOrder strong,.lessonTile strong,.quoteCard strong{font-family:var(--font-display);font-weight:300;letter-spacing:-.02em}
+.welcome h1,.simpleHero h1,.articleHero h1{line-height:1.1}
+.appHeader{background:rgba(251,247,238,.96);border-bottom:1px solid rgba(206,198,175,.65)}
+.logo{color:#000;font-size:34px}.avatar{background:var(--color-primary);color:var(--color-background)}
+.demoPill{background:var(--color-neutral-300);border:0;color:#000;border-radius:var(--pill);text-transform:none;letter-spacing:0;font-size:10px}
+.profileSwitch{background:var(--color-neutral-300);border:0;border-radius:var(--pill);padding:.65rem 1rem;color:#000}.profileSwitch select{color:#000}
+.eyebrow{color:#000!important;letter-spacing:.08em;font-size:9px}.light{color:var(--color-background)!important}
+.todayAction,.scienceProof,.articleHero,.bundleCard{background:var(--color-primary)!important;color:var(--color-background)!important;border-radius:var(--card-radius)}
+.todayAction,.expectationCard,.learningHero,.orderStatus,.learnFeatured,.quickAnswers,.trackingCard,.productDiscovery,.planProduct,.nextOrder,.planActions,.settings,.journeyTimeline article>div:last-child{box-shadow:none!important;border:1px solid var(--color-neutral-500)!important}
+.expectationCard,.learningHero,.orderStatus,.learnFeatured,.quickAnswers,.trackingCard,.productDiscovery,.planProduct,.nextOrder,.planActions,.settings,.journeyTimeline article>div:last-child{background:var(--color-neutral-100)!important}
+.expectationCard,.learningHero,.orderStatus,.learnFeatured,.quickAnswers,.trackingCard,.productDiscovery,.planProduct,.nextOrder,.planActions,.settings{border-radius:var(--card-radius)!important}
+.todayAction button,.primary,.productBottom button,.bundleCard button,.scienceProof button,.journeyTimeline button,.nextOrder button{border-radius:46px!important}
+.todayAction button,.primary,.productBottom button{background:var(--color-primary)!important;color:var(--color-background)!important;border:0!important;text-transform:none!important;font-weight:400!important}
+.todayAction{border:0!important}.todayAction button{background:var(--color-background)!important;color:var(--color-primary)!important}
+.orderHelp button,.secondaryBtn,.planActions button,.settings button{border-color:#000!important;color:#000!important}
+.sectionHead{margin-top:var(--space-8);margin-bottom:var(--space-4)}
+.page,.lessonPage{padding-left:1.5rem;padding-right:1.5rem}.simpleHero{padding-top:var(--space-7);padding-bottom:var(--space-5)}
+.welcome.compact,.welcome{padding-top:var(--space-6);padding-bottom:var(--space-5)}
+.todayAction{padding:1.5rem}.expectationCard{padding:1.5rem!important;margin-top:1rem}.learningCopy,.productInfo,.learnFeatured>div{padding:1.5rem!important}
+.learningHero.slim{gap:0}.learningImage,.productVisual,.productImage,.lessonCover{background:var(--color-neutral-300)!important}
+.learningImage span,.recommend,.status,.chips span,.productBenefits span{background:var(--color-neutral-300)!important;color:#000!important;border-radius:var(--pill)!important}
+.productBenefits span,.chips span{border:0!important}
+.productBottom{border-top:1px solid var(--color-neutral-500)!important}.productBottom strong{font-family:var(--font-ui);font-weight:400;font-size:16px}.productBottom small{color:#000}
+.productInfo p,.simpleHero p,.expectationCard p,.learnFeatured p,.quickAnswers details p,.journeyTimeline p,.trackingCard>p,.bundleCard p,.planProduct p,.nextOrder div span{color:#000;opacity:.72}
+.productDiscovery .productVisual{min-height:260px}.productVisual img{width:auto;max-width:78%;height:230px;object-fit:contain}
+.compactProduct .productVisual{min-height:210px}.compactProduct .productVisual img{height:180px}
+.bundleCard{overflow:hidden}.bundleCard img{object-fit:cover}.bundleCard button{background:var(--color-background)!important;color:#000!important;border:1px solid #000!important;font-weight:400!important}
+.quickAnswers summary{font-weight:400}.quickAnswers summary:after{color:#000}
+.lessonTile{background:var(--color-neutral-100);border:1px solid var(--color-neutral-500);box-shadow:none;border-radius:var(--card-radius)}
+.lessonCover{border-bottom:1px solid var(--color-neutral-500)}
+.journeyTimeline:before{background:var(--color-neutral-500)}.milestoneDot{background:var(--color-background);border-color:var(--color-neutral-500);color:#000}.journeyTimeline article.current .milestoneDot{background:var(--color-primary);border-color:var(--color-primary);color:var(--color-background)}
+.timelineMini i,.progressDots i,.readingProgress,.programProgress{background:var(--color-neutral-500)!important}.timelineMini i.past,.progressDots i.active,.readingProgress i,.programProgress i{background:var(--color-primary)!important}
+.orderStatus .orderIcon,.trackSteps .complete i,.trackSteps .active i{background:var(--color-primary)!important;color:var(--color-background)!important}.trackSteps i{border-color:var(--color-neutral-500)}
+.bottomNav{background:rgba(251,247,238,.98);border-top:1px solid var(--color-neutral-500);box-shadow:none}.bottomNav button{color:#000;opacity:.55;text-transform:none}.bottomNav button.active{color:var(--color-primary);opacity:1}.bottomNav button.active span{background:var(--color-neutral-300)}
+.settings button,.planActions button{background:transparent!important;border-left:0!important;border-right:0!important;border-top:0!important;border-bottom:1px solid var(--color-neutral-500)!important;border-radius:0!important}.settings button:last-child,.planActions button:last-child{border-bottom:0!important}
+.orderHelp button{background:transparent!important;border:1px solid #000!important;border-radius:46px!important;color:#000!important;font-weight:400!important}
+.primary,.productBottom button{min-height:46px;padding:.8rem 1.2rem}
+.productBottom button:hover,.primary:hover{transform:scale(1.03)}
+@media(max-width:560px){.page,.lessonPage{padding-left:1rem;padding-right:1rem}.profileSwitch{margin-left:1rem;margin-right:1rem}.appHeader{padding-left:1rem;padding-right:1rem}.sectionHead{margin-top:3rem}.productVisual{min-height:230px}.productVisual img{height:205px}.bundleCard{grid-template-columns:1fr!important}.bundleCard>div{padding:1.5rem!important}}
