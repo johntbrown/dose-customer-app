@@ -1,10 +1,12 @@
 import './globals.css';
+import './polish.css';
 
 export const metadata = {
   title: 'My Dose',
   description: 'Dose member experience V0',
   manifest: '/manifest.webmanifest',
-  themeColor: '#f5f2e9'
+  themeColor: '#FBF7EE',
+  viewport: 'width=device-width, initial-scale=1, viewport-fit=cover'
 };
 
 export default function RootLayout({ children }) {
