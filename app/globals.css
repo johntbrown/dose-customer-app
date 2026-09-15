@@ -12,6 +12,10 @@
   --line: #eee9dc;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   background: var(--cream);
@@ -22,6 +26,11 @@ body {
 button,
 a {
   font: inherit;
+}
+
+button:disabled {
+  opacity: 0.65;
+  cursor: default;
 }
 
 .shell {
@@ -115,7 +124,8 @@ p {
 
 .primary,
 .secondary,
-.text-button {
+.text-button,
+.choice {
   border: 0;
   cursor: pointer;
 }
@@ -126,6 +136,12 @@ p {
   padding: 14px 20px;
   border-radius: 999px;
   font-weight: 800;
+}
+
+.button-link {
+  text-decoration: none;
+  display: inline-block;
+  white-space: nowrap;
 }
 
 .secondary {
@@ -222,6 +238,138 @@ p {
   background: #f5f0e6;
 }
 
+.habit-engine {
+  overflow: hidden;
+}
+
+.consistency-pill {
+  color: var(--green);
+  background: var(--sage);
+  padding: 9px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.week-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  margin: 24px 0;
+}
+
+.day-cell {
+  min-width: 0;
+  text-align: center;
+}
+
+.day-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 800;
+  color: #77736a;
+  margin-bottom: 8px;
+}
+
+.day-dot {
+  width: 42px;
+  height: 42px;
+  max-width: 100%;
+  margin: 0 auto;
+  border-radius: 50%;
+  border: 2px solid var(--line);
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  color: white;
+}
+
+.day-dot.complete {
+  background: var(--green);
+  border-color: var(--green);
+}
+
+.recovery-callout {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  background: var(--cream);
+  border-radius: 18px;
+  padding: 18px;
+}
+
+.recovery-callout p {
+  margin: 4px 0 0;
+  color: #66645e;
+}
+
+.confidence-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 18px 0;
+}
+
+.choice {
+  background: var(--cream);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  padding: 10px 12px;
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+.choice.selected {
+  background: var(--green);
+  border-color: var(--green);
+  color: white;
+}
+
+.adaptive-copy {
+  margin: 18px 0 0;
+  padding: 16px;
+  border-left: 4px solid var(--gold);
+  background: #faf5ea;
+  border-radius: 0 14px 14px 0;
+}
+
+.progress-score-card {
+  background: #f7f6ee;
+}
+
+.readiness-bar {
+  height: 12px;
+  background: var(--line);
+  border-radius: 999px;
+  overflow: hidden;
+  margin: 24px 0;
+}
+
+.readiness-bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--green);
+  transition: width 200ms ease;
+}
+
+.readiness-list p {
+  margin-bottom: 10px;
+}
+
+.readiness-list span {
+  display: inline-grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: var(--sage);
+  color: var(--green);
+  font-weight: 900;
+}
+
 .bottom-nav {
   position: fixed;
   bottom: 18px;
@@ -258,17 +406,28 @@ p {
 
   .topbar,
   .hero,
-  .plan-row {
+  .plan-row,
+  .recovery-callout {
     align-items: flex-start;
   }
 
   .hero,
-  .plan-row {
+  .plan-row,
+  .recovery-callout {
     flex-direction: column;
   }
 
   .plan-row > div {
     width: 100%;
+  }
+
+  .week-grid {
+    gap: 5px;
+  }
+
+  .day-dot {
+    width: 34px;
+    height: 34px;
   }
 
   .bottom-nav a {
