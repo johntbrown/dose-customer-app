@@ -1,3 +1,4 @@
+import HabitProgressEngine from "../components/HabitProgressEngine";
 import { getNextBestAction, mockCustomer } from "../lib/mockCustomer";
 
 const customer = mockCustomer;
@@ -23,7 +24,7 @@ export default function HomePage() {
             Keep the routine simple. You are {customer.weeklyConsistency}% consistent this week.
           </p>
         </div>
-        <button className="primary">Log today&apos;s Dose</button>
+        <a className="primary button-link" href="#habit-progress">Check in</a>
       </section>
 
       <section className="grid two">
@@ -42,6 +43,10 @@ export default function HomePage() {
           <p>{nextBestAction.body}</p>
           <button className="secondary">Review my plan</button>
         </article>
+      </section>
+
+      <section id="habit-progress">
+        <HabitProgressEngine />
       </section>
 
       <section className="card">
@@ -95,7 +100,7 @@ export default function HomePage() {
 
       <nav className="bottom-nav" aria-label="Primary navigation">
         <a className="selected" href="#">Home</a>
-        <a href="#">Progress</a>
+        <a href="#habit-progress">Progress</a>
         <a href="#">My Plan</a>
         <a href="#">Rewards</a>
         <a href="#">Learn</a>
