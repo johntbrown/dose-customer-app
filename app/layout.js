@@ -1,5 +1,6 @@
 import './globals.css';
 import './polish.css';
+import './discovery-fix.css';
 
 export const metadata = {
   title: 'My Dose',
