@@ -7,7 +7,7 @@ const RECIPES=[
  ['Liver + Cholesterol Bundle | Feel Good Summer Recipes','https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=900&q=80']
 ];
 
-export default function MemberPortal({name='Alex',onNavigate}){
+export default function MemberPortal({name='Alex',streak=6,points=1240,cashback=5,onNavigate}){
   return <div className="portalPage">
     <section className="portalWelcome">
       <div>
@@ -15,6 +15,13 @@ export default function MemberPortal({name='Alex',onNavigate}){
         <h1>Welcome, {name}!</h1>
       </div>
       <p>Stay in control of your Dose routine. Manage your subscription, access supportive resources, and connect with experts to get the most out of your Dose journey.</p>
+    </section>
+
+    <section className="portalRewardSummary">
+      <div><span>Current streak</span><strong>{streak} days</strong></div>
+      <div><span>Reward points</span><strong>{points.toLocaleString()} pts</strong></div>
+      <div><span>Cash back</span><strong>${cashback} available</strong></div>
+      <button onClick={()=>onNavigate?.('Rewards')}>Open rewards</button>
     </section>
 
     <section className="memberValueStrip">
@@ -80,7 +87,7 @@ export default function MemberPortal({name='Alex',onNavigate}){
     </section>
 
     <section className="portalSection perkGrid">
-      <article><span>Learn & earn</span><h3>Browse expert-led wellness content and collect points for completing lessons.</h3><button className="textLink" onClick={()=>onNavigate?.('Learn')}>Start your rewards journey</button></article>
+      <article><span>Learn & earn</span><h3>Build your streak, finish lessons, unlock badges, and collect points.</h3><button className="textLink" onClick={()=>onNavigate?.('Rewards')}>Open Dose Rewards</button></article>
       <article><span>Give $40. Get $40.</span><h3>Invite a friend to start their Dose journey.</h3><button className="textLink">Send invites</button></article>
       <article><span>HSA/FSA</span><h3>Save more by paying with eligible HSA/FSA funds.</h3><button className="textLink">Learn more</button></article>
     </section>
