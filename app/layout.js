@@ -3,6 +3,7 @@ import './polish.css';
 import './discovery-fix.css';
 import './brand-system.css';
 import './portal.css';
+import './gamification.css';
 
 export const metadata = {
   title: 'My Dose',
