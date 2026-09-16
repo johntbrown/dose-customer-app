@@ -1,0 +1,252 @@
+/* My Dose native-app polish
+   Direction: premium wellness companion, inspired by the structure and calm hierarchy of leading subscriber wellness apps.
+   Keeps Dose brand tokens and avoids copying any proprietary Nutrafol assets or exact layouts.
+   Loaded last so this file is the final visual authority. */
+
+:root{
+  --app-bg:#F6F1E7;
+  --app-surface:#FFFFFF;
+  --app-surface-soft:#EFE9DD;
+  --app-ink:#172018;
+  --app-muted:#6E736D;
+  --app-green:#344633;
+  --app-border:rgba(52,70,51,.12);
+  --app-shadow:0 8px 28px rgba(35,43,33,.07);
+  --app-shadow-soft:0 3px 14px rgba(35,43,33,.05);
+  --app-radius:28px;
+  --app-radius-sm:20px;
+}
+
+html,body{background:#EDE8DF;color:var(--app-ink)}
+body{margin:0;font-family:var(--font-ui);-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+
+.appShell{
+  width:100%;
+  max-width:480px!important;
+  min-height:100vh;
+  margin:0 auto;
+  background:var(--app-bg)!important;
+  box-shadow:0 0 0 1px rgba(52,70,51,.04),0 20px 70px rgba(28,37,27,.08)!important;
+  overflow:hidden;
+}
+
+/* Header */
+.appHeader{
+  height:70px;
+  padding:0 20px!important;
+  display:grid!important;
+  grid-template-columns:1fr auto auto;
+  gap:10px;
+  align-items:center;
+  background:rgba(246,241,231,.94)!important;
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(52,70,51,.08)!important;
+  position:sticky;
+  top:0;
+  z-index:40;
+}
+.logo{font-size:29px!important;line-height:1;background:transparent!important;border:0!important;padding:0!important;justify-self:start;transform:none!important}
+.demoPill{padding:7px 11px!important;font-size:10px!important;background:#EAE4D8!important;border:0!important;color:var(--app-ink)!important;font-weight:500}
+.avatar{width:40px!important;height:40px!important;min-width:40px;border-radius:50%!important;background:var(--app-green)!important;color:#fff!important;border:0!important;font-weight:600!important}
+.profileSwitch{margin:12px 20px 0!important;padding:8px 10px 8px 12px!important;min-height:42px;background:rgba(255,255,255,.7)!important;border:1px solid var(--app-border)!important;border-radius:16px!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:10px!important;box-shadow:none!important}
+.profileSwitch span{font-size:9px!important;letter-spacing:.04em;color:var(--app-muted)}
+.profileSwitch select{font-size:10px!important;border:0!important;background:transparent!important;outline:0!important;text-align:right;max-width:175px}
+
+/* Shared page rhythm */
+.page,.lessonPage,.wellnessPage{padding:0 20px 118px!important}
+.portalPage{padding:0 20px 118px!important;background:transparent!important}
+.simpleHero,.welcome.compact,.welcome{padding:34px 0 24px!important}
+.simpleHero h1,.welcome h1,.portalWelcome h1,.quizRunner h1{color:var(--app-ink)!important;font-family:var(--font-display)!important;font-weight:300!important;letter-spacing:-.035em!important}
+.simpleHero h1,.welcome h1{font-size:42px!important;line-height:1.01!important;margin:8px 0 12px!important}
+.simpleHero p,.welcome p,.portalWelcome p{font-size:14px!important;line-height:1.55!important;color:var(--app-muted)!important;margin:0!important;max-width:390px}
+.eyebrow,.portalKicker{font-size:9px!important;font-weight:600!important;letter-spacing:.11em!important;text-transform:uppercase!important;color:#6D746C!important}
+.light{color:rgba(255,255,255,.72)!important}
+
+.sectionHead{margin:34px 0 15px!important;display:flex!important;align-items:flex-end!important;justify-content:space-between!important;gap:16px!important}
+.sectionHead h2,.portalSectionHead h2{font-size:29px!important;line-height:1.08!important;margin:4px 0 0!important;color:var(--app-ink)!important}
+.sectionHead>button,.portalSectionHead>button{min-height:42px!important;padding:8px 13px!important;border-radius:999px!important;border:1px solid var(--app-border)!important;background:rgba(255,255,255,.72)!important;color:var(--app-ink)!important;font-size:10px!important;font-weight:600!important}
+
+/* Universal card language */
+.todayAction,.streakStrip,.wellnessPrompt,.dailyTip,.rewardSnapshot,.expectationCard,.learningHero,.orderStatus,.learnFeatured,.journeyCta,.journeyTimeline article>div:last-child,.trackingCard,.productDiscovery,.planProduct,.nextOrder,.rewardGoal,.levelCard,.badgeCard,.giftCard,.leaderboard,.wearableCard,.earnList,.wellnessResultCard,.quizCards article,.resultsGrid article,.quizRunner,.wellnessProfileEntry,.successCard,.subscriptionBar,.journeyPanel,.supportGrid>a,.supportGrid>button,.perkGrid article,.portalRewardSummary,.memberValueStrip{
+  border:1px solid var(--app-border)!important;
+  border-radius:var(--app-radius)!important;
+  box-shadow:var(--app-shadow-soft)!important;
+}
+.expectationCard,.learningHero,.orderStatus,.learnFeatured,.trackingCard,.productDiscovery,.planProduct,.nextOrder,.rewardGoal,.levelCard,.badgeCard,.giftCard,.leaderboard,.wearableCard,.earnList,.wellnessResultCard,.quizCards article,.resultsGrid article,.quizRunner,.wellnessProfileEntry,.successCard,.subscriptionBar,.journeyPanel,.supportGrid>a,.supportGrid>button,.perkGrid article,.portalRewardSummary{
+  background:var(--app-surface)!important;
+}
+
+/* Today */
+.welcome.compact{display:grid!important;grid-template-columns:minmax(0,1fr) 104px!important;align-items:end!important;gap:12px!important}
+.welcome.compact img{width:104px!important;height:132px!important;object-fit:contain!important;align-self:end}
+.todayAction{margin-top:2px!important;padding:22px!important;display:grid!important;grid-template-columns:auto 1fr!important;gap:15px!important;background:linear-gradient(145deg,#344633,#425740)!important;color:#fff!important;position:relative!important;overflow:hidden!important}
+.todayAction .checkIcon{width:46px!important;height:46px!important;border-radius:50%!important;display:grid!important;place-items:center!important;background:rgba(255,255,255,.12)!important;border:1px solid rgba(255,255,255,.22)!important;font-size:20px}
+.todayAction h2{font-size:29px!important;line-height:1.05!important;margin:3px 0 8px!important;color:#fff!important}
+.todayAction p{font-size:12px!important;line-height:1.45!important;color:rgba(255,255,255,.75)!important;margin:0!important}
+.todayAction>button{grid-column:2!important;justify-self:start!important;margin-top:14px!important;min-height:48px!important;padding:0 22px!important;border-radius:999px!important;background:#fff!important;color:var(--app-green)!important;font-weight:600!important;border:0!important}
+.streakStrip{margin-top:14px!important;padding:17px 18px!important;background:var(--app-surface)!important}
+.dailyTip{margin-top:14px!important;padding:21px!important;background:#EAE4D8!important;box-shadow:none!important}
+.dailyTip h2{font-size:26px!important;line-height:1.08!important;margin:9px 0 7px!important}
+.dailyTip p{font-size:12px!important;line-height:1.5!important;color:var(--app-muted)!important}
+.wellnessPrompt{margin-top:14px!important;padding:21px!important;background:var(--app-surface)!important;align-items:flex-start!important}
+.wellnessPrompt h2{font-size:27px!important;margin:5px 0 8px!important;line-height:1.08!important}
+.wellnessPrompt p{font-size:12px!important;color:var(--app-muted)!important}
+.wellnessPrompt button,.rewardSnapshotTop button{min-height:46px!important;padding:0 18px!important;margin-top:0!important;border-radius:999px!important;background:var(--app-green)!important;color:#fff!important;font-size:11px!important;border:0!important}
+.rewardSnapshot{margin-top:14px!important;padding:22px!important;background:var(--app-surface)!important}
+.rewardSnapshotTop h2{font-size:31px!important;line-height:1.05!important;margin:6px 0!important}
+.rewardSnapshotTop p{font-size:11px!important;color:var(--app-muted)!important}
+.rewardMeter{margin-top:18px!important}
+.rewardMeter>div,.tierTrack,.badgeBar,.giftProgress,.quizProgress,.miniBadgeProgress>span{background:#E5E0D6!important;height:8px!important}
+.rewardMeter i,.tierTrack i,.badgeBar i,.giftProgress i,.quizProgress i,.miniBadgeProgress i{background:var(--app-green)!important}
+.expectationCard{margin-top:14px!important;padding:22px!important;background:linear-gradient(180deg,#FAF7F0,#F0EADF)!important;box-shadow:none!important}
+.expectationCard h2{font-family:var(--font-display)!important;font-size:30px!important;font-weight:300!important;margin:5px 0 8px!important}
+.expectationCard p{font-size:12px!important;color:var(--app-muted)!important;line-height:1.5!important}
+.expectationCard strong{display:block!important;margin-top:16px!important;font-size:11px!important;color:var(--app-green)!important}
+
+/* Learning */
+.learningHero.slim{display:grid!important;grid-template-columns:132px 1fr!important;overflow:hidden!important;min-height:175px!important;background:#fff!important}
+.learningImage{min-height:175px!important;background:#E9E3D8!important}
+.learningImage img{width:100%!important;height:100%!important;min-height:175px!important;object-fit:cover!important}
+.learningCopy{padding:20px!important;display:flex!important;flex-direction:column!important;justify-content:center!important}
+.learningCopy h3{font-size:24px!important;line-height:1.08!important;margin:5px 0 8px!important}
+.learningCopy p{font-size:11px!important;line-height:1.5!important;color:var(--app-muted)!important;margin:0 0 15px!important}
+.learningCopy strong{font-size:10px!important;color:var(--app-green)!important}
+.learnFeatured{overflow:hidden!important;padding:0!important}
+.learnFeatured>img{width:100%!important;height:220px!important;object-fit:cover!important}
+.learnFeatured>div{padding:22px!important}
+.learnFeatured h2{font-size:31px!important;margin:5px 0 8px!important}
+.learnFeatured p{font-size:12px!important;color:var(--app-muted)!important;line-height:1.55!important}
+.chips{margin-top:16px!important;display:flex!important;flex-wrap:wrap!important;gap:7px!important}
+.chips span,.lessonReward,.privateLabel{background:#F0ECE4!important;border:0!important;color:#4B514B!important;padding:7px 10px!important;border-radius:999px!important;font-size:9px!important}
+.lessonRail{display:grid!important;grid-template-columns:1fr!important;gap:11px!important;overflow:visible!important}
+.lessonTile{display:grid!important;grid-template-columns:84px 1fr!important;text-align:left!important;min-height:112px!important;overflow:hidden!important;background:#fff!important;border:1px solid var(--app-border)!important;border-radius:22px!important;box-shadow:var(--app-shadow-soft)!important;padding:0!important;width:100%!important}
+.lessonCover{height:100%!important;min-height:112px!important;border:0!important;background:#EAE4D8!important;padding:14px!important;display:flex!important;flex-direction:column!important;justify-content:space-between!important}
+.lessonTile>div:last-child{padding:16px!important;display:flex!important;flex-direction:column!important;justify-content:center!important;min-width:0}
+.lessonTile strong{font-size:19px!important;line-height:1.15!important;margin:5px 0 8px!important}
+.lessonTile small,.lessonTile span{font-size:9px!important;color:var(--app-muted)!important}
+.journeyCta{margin-top:16px!important;padding:18px 20px!important;background:#fff!important;display:grid!important;grid-template-columns:1fr auto!important;gap:4px 14px!important;align-items:center!important;text-align:left!important}
+.journeyCta>span{font-size:9px!important;color:var(--app-muted)!important}
+.journeyCta>strong{font-size:13px!important;line-height:1.35!important}.journeyCta>b{grid-column:2!important;grid-row:1/3!important;font-size:20px!important}
+
+/* Journey */
+.journeyTimeline{padding-left:0!important;margin-top:6px!important}.journeyTimeline:before{display:none!important}
+.journeyTimeline article{display:grid!important;grid-template-columns:46px 1fr!important;gap:13px!important;margin-bottom:13px!important;align-items:start!important}
+.milestoneDot{width:44px!important;height:44px!important;border-radius:50%!important;border:1px solid var(--app-border)!important;background:#EAE4D8!important;color:var(--app-green)!important;display:grid!important;place-items:center!important;font-size:11px!important}
+.journeyTimeline article.current .milestoneDot{background:var(--app-green)!important;color:#fff!important;border-color:var(--app-green)!important}
+.journeyTimeline article>div:last-child{padding:20px!important;background:#fff!important}
+.journeyTimeline h2{font-size:25px!important;margin:4px 0 7px!important}.journeyTimeline p{font-size:12px!important;line-height:1.5!important;color:var(--app-muted)!important}
+
+/* Orders */
+.trackingCard{padding:22px!important;text-align:left!important}
+.trackingTop{display:flex!important;align-items:center!important;justify-content:space-between!important;margin-bottom:18px!important;font-size:10px!important;color:var(--app-muted)!important}
+.trackingCard>img{width:100%!important;height:180px!important;object-fit:contain!important;background:#F2EEE6!important;border-radius:22px!important;padding:16px!important;margin:0 0 20px!important}
+.trackingCard>h2{font-size:32px!important;margin:0 0 5px!important}.trackingCard>p{font-size:12px!important;color:var(--app-muted)!important;margin:0 0 22px!important}
+.trackSteps{padding:2px 0!important}.trackSteps>div{min-height:58px!important}.trackSteps strong{font-size:11px!important}.trackSteps small{font-size:9px!important;color:var(--app-muted)!important;margin-top:2px!important}.trackSteps i{width:28px!important;height:28px!important;font-size:10px!important}
+.primary,.spaciousPrimary{width:100%!important;min-height:54px!important;margin-top:22px!important;border-radius:999px!important;background:var(--app-green)!important;color:#fff!important;font-weight:600!important;font-size:12px!important;border:0!important}
+
+/* Discover */
+.productDiscovery{overflow:hidden!important;background:#fff!important}
+.productVisual{min-height:300px!important;background:#EEE8DD!important;position:relative!important;display:grid!important;place-items:center!important;padding:24px!important}
+.productVisual img{height:245px!important;max-width:78%!important;object-fit:contain!important}
+.recommend{position:absolute!important;top:16px!important;left:16px!important;background:#fff!important;color:var(--app-ink)!important;padding:8px 11px!important;border-radius:999px!important;font-size:9px!important;box-shadow:var(--app-shadow-soft)!important}
+.productInfo{padding:24px!important}.productInfo h2{font-size:33px!important;line-height:1.05!important;margin:6px 0 10px!important}.productInfo p{font-size:12px!important;line-height:1.55!important;color:var(--app-muted)!important;margin-bottom:22px!important}
+.productBottom{padding-top:18px!important;border-top:1px solid var(--app-border)!important;display:flex!important;align-items:center!important;gap:18px!important}.productBottom>div{min-width:0!important;flex:1}.productBottom small{font-size:9px!important;color:var(--app-muted)!important}.productBottom strong{display:block!important;margin-top:3px!important;font-size:14px!important}.productBottom button{min-height:50px!important;padding:0 18px!important;border-radius:999px!important;background:var(--app-green)!important;color:#fff!important;border:0!important;font-size:10px!important;font-weight:600!important}
+
+/* Plan */
+.planProduct{padding:18px!important;display:grid!important;grid-template-columns:96px 1fr!important;gap:18px!important;align-items:center!important}.productImage{height:106px!important;border-radius:20px!important;background:#EEE8DD!important;display:grid!important;place-items:center!important}.productImage img{max-width:82%!important;max-height:92px!important}.planProduct h2{font-size:26px!important;margin:6px 0!important}.planProduct p{font-size:11px!important;color:var(--app-muted)!important}.status{display:inline-flex!important;padding:6px 9px!important;border-radius:999px!important;background:#E7EDDF!important;color:#344633!important;font-size:9px!important}
+.nextOrder{margin-top:14px!important;padding:22px!important}.nextOrder>div{margin:12px 0 18px!important}.nextOrder strong{font-size:28px!important}.nextOrder span{font-size:10px!important;color:var(--app-muted)!important}.nextOrder button{width:100%!important;min-height:50px!important;border-radius:999px!important;background:#fff!important;border:1px solid var(--app-green)!important;color:var(--app-green)!important;font-weight:600!important}
+
+/* Rewards */
+.rewardsHero{padding-bottom:20px!important}.levelCard{padding:20px!important;display:grid!important;grid-template-columns:64px 1fr!important;gap:16px!important;align-items:center!important;background:#fff!important}.levelMedal{width:62px!important;height:62px!important;border-radius:50%!important;display:grid!important;place-items:center!important;font-family:var(--font-display)!important;font-size:26px!important;background:#D8C4A6!important;color:#4C3B29!important}.levelMedal.silver{background:#D9D9D7!important;color:#4B4B49!important}.levelMedal.gold{background:#DFC986!important;color:#44390F!important}.levelCopy h2{font-size:28px!important;margin:3px 0 5px!important}.levelCopy p{font-size:11px!important;color:var(--app-muted)!important;margin:0 0 12px!important}
+.rewardsBalance{margin-top:14px!important;display:grid!important;grid-template-columns:repeat(3,1fr)!important;background:#fff!important;overflow:hidden!important}.rewardsBalance>div{padding:18px 14px!important;border-right:1px solid var(--app-border)!important;border-bottom:0!important}.rewardsBalance>div:last-child{border-right:0!important}.rewardsBalance strong{font-size:25px!important}.rewardsBalance span,.rewardsBalance small{font-size:8px!important;color:var(--app-muted)!important}
+.rewardGoal{margin-top:14px!important;padding:22px!important}.rewardGoal h2{font-size:27px!important;margin:5px 0 8px!important}.rewardGoal p{font-size:11px!important;color:var(--app-muted)!important}
+.giftRail,.badgeGrid{display:grid!important;grid-template-columns:1fr!important;gap:11px!important}.giftCard,.badgeCard{padding:17px!important;display:grid!important;grid-template-columns:52px 1fr!important;gap:14px!important;align-items:start!important}.giftIcon,.badgeMedal{width:50px!important;height:50px!important;border-radius:50%!important;display:grid!important;place-items:center!important;background:#ECE6DB!important;border:0!important}.giftCard.unlocked .giftIcon,.badgeCard.unlocked .badgeMedal{background:var(--app-green)!important;color:#fff!important}.giftCard h3,.badgeCard h3{font-size:21px!important;margin:3px 0 4px!important}.giftCard p,.badgeCard p{font-size:10px!important;line-height:1.45!important;color:var(--app-muted)!important;margin:7px 0!important}
+.leaderboard{overflow:hidden!important}.leaderboardHead,.leaderRow{grid-template-columns:44px 1fr 68px 70px!important;padding:12px 14px!important;gap:6px!important}.leaderboardHead{background:#F1ECE3!important;font-size:8px!important;color:var(--app-muted)!important}.leaderRow{min-height:48px!important;border-top:1px solid var(--app-border)!important}.leaderRow.you{background:#EDF1E8!important}.leaderRow b,.leaderRow span,.leaderRow small,.leaderRow strong{font-size:9px!important}.leaderboard>p{font-size:9px!important;color:var(--app-muted)!important;padding:12px 14px!important;margin:0!important}
+.wearableCard{padding:20px!important}.wearableHeader{display:grid!important;grid-template-columns:48px 1fr!important;gap:14px!important}.watchMark{width:48px!important;height:48px!important;border-radius:15px!important;background:#111!important;color:#fff!important;display:grid!important;place-items:center!important;font-size:19px!important}.wearableCard h3{font-size:23px!important;margin:4px 0 6px!important}.wearableCard p{font-size:10px!important;line-height:1.5!important;color:var(--app-muted)!important;margin:0!important}.wearableStats{margin:18px 0!important;display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:8px!important}.wearableStats>div{padding:12px!important;border-radius:16px!important;background:#F1ECE3!important}.wearableStats span{font-size:8px!important;color:var(--app-muted)!important}.wearableStats strong{display:block!important;font-size:18px!important;margin-top:3px!important}.wearableCard>button{width:100%!important;min-height:50px!important;border-radius:999px!important;background:var(--app-green)!important;color:#fff!important;border:0!important;font-size:11px!important;font-weight:600!important}.wearableNote{display:block!important;margin-top:10px!important;font-size:8px!important;line-height:1.45!important;color:var(--app-muted)!important}
+.earnList{overflow:hidden!important}.earnList article{padding:15px 16px!important;border-bottom:1px solid var(--app-border)!important}.earnIcon{background:#EEE8DD!important}.earnList strong{font-size:11px!important}.earnList small{font-size:9px!important;color:var(--app-muted)!important}.earnList button{min-height:42px!important;padding:0 14px!important;border-radius:999px!important}
+
+/* Wellness / quizzes */
+.wellnessResultCard{padding:20px!important;gap:12px!important}.wellnessResultCard h2{font-size:29px!important}.wellnessResultCard p{font-size:11px!important;color:var(--app-muted)!important}.resultStatus{background:#EEE8DD!important;border-radius:20px!important;padding:16px!important}
+.quizCards{gap:12px!important}.quizCards article{padding:20px!important;min-height:245px!important}.quizNumber{background:#EEE8DD!important}.quizCards h3{font-size:27px!important}.quizCards p{font-size:11px!important;color:var(--app-muted)!important}.quizCards button{width:100%!important;min-height:50px!important;margin-top:auto!important}
+.quizRunner{padding:22px!important;margin-top:12px!important}.quizRunner h1{font-size:34px!important;line-height:1.08!important;margin:12px 0 22px!important}.quizOptions{gap:10px!important}.quizOptions button{min-height:58px!important;padding:14px 17px!important;border:1px solid var(--app-border)!important;border-radius:18px!important;background:#fff!important;color:var(--app-ink)!important;font-size:11px!important;box-shadow:none!important}.quizOptions button:hover{background:#EEF1E9!important;color:var(--app-ink)!important;border-color:rgba(52,70,51,.28)!important}.resultsGrid{gap:10px!important}.resultsGrid article{padding:18px!important}.resultsGrid strong{font-size:20px!important}.resultsGrid p{color:var(--app-muted)!important}
+
+/* Portal / You */
+.portalWelcome{padding:34px 0 22px!important}.portalWelcome h1{font-size:40px!important;line-height:1!important;margin:7px 0 11px!important}
+.portalRewardSummary{padding:10px!important;gap:8px!important;background:#fff!important}.portalRewardSummary>div{background:#F1ECE3!important;border-radius:18px!important;padding:12px!important}.portalRewardSummary strong{font-size:18px!important}.portalRewardSummary button{min-height:48px!important;padding:0 16px!important}
+.memberValueStrip{padding:22px!important;background:#344633!important;color:#fff!important;box-shadow:none!important}.memberValueStrip strong{font-family:var(--font-display)!important;font-weight:300!important;font-size:27px!important;line-height:1.08!important}.valueChips{margin-top:18px!important;display:flex!important;flex-wrap:wrap!important;gap:7px!important}.valueChips span{background:rgba(255,255,255,.12)!important;color:#fff!important;border:1px solid rgba(255,255,255,.15)!important;padding:8px 10px!important;border-radius:999px!important;font-size:8px!important}
+.portalSection{margin-top:34px!important}.portalSectionHead{margin-bottom:14px!important}.successGrid{display:grid!important;grid-template-columns:1fr!important;gap:12px!important}.successCard{padding:21px!important}.successCard h3{font-family:var(--font-display)!important;font-size:26px!important;font-weight:300!important;line-height:1.08!important;margin:12px 0 9px!important}.successCard p{font-size:11px!important;line-height:1.55!important;color:var(--app-muted)!important}.supportFacts{background:#F3EEE6!important;border-radius:18px!important;padding:12px!important;margin:14px 0!important}.successCard .portalPrimary{width:100%!important;min-height:50px!important}
+.subscriptionBar{padding:15px!important;display:grid!important;grid-template-columns:74px 1fr!important;gap:14px!important;align-items:center!important}.subscriptionBar img{width:74px!important;height:88px!important;object-fit:contain!important;background:#F0EBE2!important;border-radius:17px!important;padding:7px!important}.subscriptionCopy strong{font-size:13px!important}.subscriptionCopy span,.subscriptionCopy small{font-size:9px!important;color:var(--app-muted)!important}.subscriptionBar .portalPrimary{grid-column:1/-1!important;width:100%!important;min-height:50px!important}
+.journeyPanel{overflow:hidden!important}.journeyTabs{padding:15px!important;background:#F1ECE3!important}.journeyContent{padding:20px!important}.journeyCopy p{font-size:11px!important;color:var(--app-muted)!important;line-height:1.55!important}
+.recipeRail{gap:10px!important}.recipeCard{border-radius:22px!important;overflow:hidden!important;background:#fff!important;border:1px solid var(--app-border)!important;box-shadow:var(--app-shadow-soft)!important}.recipeCard img{height:150px!important}.recipeCard span{padding:13px!important;font-size:10px!important;line-height:1.35!important}
+.supportGrid{gap:10px!important}.supportGrid>a,.supportGrid>button{padding:17px!important;min-height:82px!important}.supportGrid span{font-size:9px!important;color:var(--app-muted)!important}.supportGrid strong{font-size:12px!important;margin-top:5px!important}
+.portalCommunity{padding:22px!important;border-radius:var(--app-radius)!important;background:#EAE4D8!important}.portalCommunity h2{font-size:29px!important}.portalCommunity p{font-size:11px!important;color:var(--app-muted)!important}.portalSecondary{min-height:48px!important;padding:0 17px!important}
+.perkGrid{gap:10px!important}.perkGrid article{padding:18px!important}.perkGrid h3{font-size:16px!important;line-height:1.3!important;margin:7px 0 10px!important}
+.wellnessProfileEntry{padding:20px!important}.wellnessProfileEntry h2{font-size:27px!important}.wellnessProfileEntry p{font-size:11px!important;color:var(--app-muted)!important}
+
+/* Buttons / CTAs: more breathing room, less cramped */
+button,a{touch-action:manipulation}
+.page button,.portalPage button{letter-spacing:0!important}
+.portalPrimary,.portalSecondary,.wellnessPrompt button,.quizCards button,.wearableCard>button,.productBottom button,.primary,.todayAction>button,.rewardSnapshotTop button{
+  min-height:50px!important;
+  padding-left:20px!important;
+  padding-right:20px!important;
+}
+.textLink{min-height:38px!important;padding:8px 0!important;color:var(--app-green)!important;font-weight:600!important}
+
+/* Bottom nav */
+.bottomNav{
+  position:fixed!important;
+  left:50%!important;
+  transform:translateX(-50%)!important;
+  bottom:0!important;
+  width:min(480px,100%)!important;
+  min-height:82px!important;
+  padding:9px 12px calc(9px + env(safe-area-inset-bottom))!important;
+  display:grid!important;
+  grid-template-columns:repeat(5,1fr)!important;
+  gap:2px!important;
+  background:rgba(255,255,255,.95)!important;
+  backdrop-filter:blur(20px)!important;
+  border-top:1px solid rgba(52,70,51,.08)!important;
+  box-shadow:0 -8px 30px rgba(35,43,33,.06)!important;
+  z-index:50!important;
+}
+.bottomNav button{min-width:0!important;min-height:60px!important;background:transparent!important;border:0!important;border-radius:18px!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:4px!important;font-size:9px!important;color:#7A8079!important;opacity:1!important;padding:5px!important}
+.bottomNav button span{width:28px!important;height:28px!important;border-radius:50%!important;display:grid!important;place-items:center!important;font-size:15px!important;background:transparent!important}
+.bottomNav button.active{color:var(--app-green)!important;background:#F2EEE6!important;font-weight:600!important}.bottomNav button.active span{background:#E0E7DA!important;color:var(--app-green)!important}
+
+/* Remove legacy hover zooming on coarse/mobile interactions */
+@media (hover:hover) and (pointer:fine){button:hover{transform:translateY(-1px)!important}.lessonTile:hover,.productDiscovery:hover,.giftCard:hover,.badgeCard:hover{transform:translateY(-1px)!important}}
+@media (hover:none){button:hover,img:hover{transform:none!important}}
+
+@media(max-width:560px){
+  html,body{background:var(--app-bg)}
+  .appShell{max-width:none!important;box-shadow:none!important}
+  .page,.lessonPage,.wellnessPage,.portalPage{padding-left:18px!important;padding-right:18px!important}
+  .appHeader{padding-left:18px!important;padding-right:18px!important}
+  .profileSwitch{margin-left:18px!important;margin-right:18px!important}
+  .simpleHero h1,.welcome h1{font-size:38px!important}
+  .welcome.compact{grid-template-columns:minmax(0,1fr) 86px!important}.welcome.compact img{width:86px!important;height:118px!important}
+  .todayAction{grid-template-columns:auto 1fr!important}.todayAction>button{grid-column:1/-1!important;width:100%!important;margin-top:4px!important}
+  .wellnessPrompt{flex-direction:column!important}.wellnessPrompt button{width:100%!important}
+  .rewardSnapshotTop{flex-direction:column!important}.rewardSnapshotTop button{width:100%!important;margin-top:14px!important}
+  .learningHero.slim{grid-template-columns:112px 1fr!important}.learningCopy{padding:17px!important}.learningCopy h3{font-size:21px!important}
+  .productBottom{flex-direction:column!important;align-items:stretch!important}.productBottom button{width:100%!important}
+  .rewardsBalance{grid-template-columns:repeat(3,1fr)!important}.rewardsBalance>div{padding:15px 10px!important}.rewardsBalance strong{font-size:22px!important}
+  .leaderboardHead,.leaderRow{grid-template-columns:36px 1fr 56px 58px!important;padding-left:10px!important;padding-right:10px!important}
+  .wellnessResultCard,.quizCards,.resultsGrid{grid-template-columns:1fr!important}
+  .portalRewardSummary{grid-template-columns:1fr 1fr!important}.portalRewardSummary button{grid-column:1/-1!important;width:100%!important}
+  .journeyContent{grid-template-columns:1fr!important}.journeyDial{display:none!important}
+}
+
+@media(max-width:370px){
+  .page,.lessonPage,.wellnessPage,.portalPage{padding-left:14px!important;padding-right:14px!important}
+  .appHeader{padding-left:14px!important;padding-right:14px!important}.profileSwitch{margin-left:14px!important;margin-right:14px!important}
+  .simpleHero h1,.welcome h1{font-size:35px!important}
+  .welcome.compact{grid-template-columns:1fr!important}.welcome.compact img{display:none!important}
+  .rewardsBalance{grid-template-columns:1fr!important}.rewardsBalance>div{border-right:0!important;border-bottom:1px solid var(--app-border)!important}.rewardsBalance>div:last-child{border-bottom:0!important}
+  .leaderboardHead,.leaderRow{grid-template-columns:34px 1fr 56px!important}.leaderboardHead span:nth-child(3),.leaderRow small{display:none!important}
+}
+
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
