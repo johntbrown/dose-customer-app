@@ -4,6 +4,7 @@ import './discovery-fix.css';
 import './brand-system.css';
 import './portal.css';
 import './gamification.css';
+import './wellness.css';
 
 export const metadata = {
   title: 'My Dose',
