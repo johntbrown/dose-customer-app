@@ -21,6 +21,11 @@ export default function MemberPortal({name='John',streak=6,points=1240,cashback=
       <button onClick={()=>onNavigate?.('Rewards')}>Open rewards</button>
     </section>
 
+    <a className="featureHubEntry" href="/features">
+      <div><span className="portalKicker">New in My Dose</span><h2>Explore your journey, insights, challenges, Circle, and connected routine.</h2><p>See the expanded 90-day calendar, wellness journal, private accountability features, integrations, and your prototype 90-day report.</p></div>
+      <b>Explore features →</b>
+    </a>
+
     <section className="wellnessProfileEntry">
       <div><span className="portalKicker">Your wellness profile</span><h2>Personalize My Dose around your goals.</h2><p>Take a quick wellness-goals quiz and routine check-in, then see a personalized results summary and recommended next steps.</p></div>
       <button className="portalPrimary" onClick={()=>onNavigate?.('Wellness')}>Open wellness profile</button>
