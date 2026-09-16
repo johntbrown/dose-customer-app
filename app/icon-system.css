@@ -1,0 +1,135 @@
+/* My Dose icon system
+   Loaded last. Replaces text/emoji placeholder glyphs with monochrome SVG masks.
+   Icons inherit currentColor so active/disabled states stay consistent with the Dose palette. */
+
+:root{
+  --icon-home:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3.5 10.6 12 3.8l8.5 6.8v9.1a.8.8 0 0 1-.8.8h-5.1v-6.2H9.4v6.2H4.3a.8.8 0 0 1-.8-.8v-9.1Z' fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --icon-book:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 5.2c2.8-.7 5.3-.2 8 1.4v12.1c-2.7-1.6-5.2-2.1-8-1.4V5.2Zm16 0c-2.8-.7-5.3-.2-8 1.4v12.1c2.7-1.6 5.2-2.1 8-1.4V5.2Z' fill='none' stroke='black' stroke-width='1.7' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --icon-package:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='m4.5 7 7.5-4 7.5 4v10L12 21l-7.5-4V7Zm0 0 7.5 4 7.5-4M12 11v10M8.2 5l7.5 4' fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --icon-compass:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='9' fill='none' stroke='black' stroke-width='1.7'/%3E%3Cpath d='m15.8 8.2-2.1 5.5-5.5 2.1 2.1-5.5 5.5-2.1Z' fill='none' stroke='black' stroke-width='1.7' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --icon-user:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='8' r='3.3' fill='none' stroke='black' stroke-width='1.7'/%3E%3Cpath d='M5.5 20c.5-4 3-6 6.5-6s6 2 6.5 6' fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round'/%3E%3C/svg%3E");
+  --icon-check:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='m5.5 12.3 4.2 4.2 8.8-9' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --icon-circle:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='7.5' fill='none' stroke='black' stroke-width='1.7'/%3E%3C/svg%3E");
+  --icon-check-circle:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='9' fill='none' stroke='black' stroke-width='1.7'/%3E%3Cpath d='m7.8 12.2 2.8 2.8 5.8-6' fill='none' stroke='black' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --icon-flame:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M13.3 2.8c.4 3.3-1.9 4.5-3.5 6.5-1.4 1.8-1.9 3.5-.7 5.7.5-1.6 1.5-2.7 3-3.8-.1 2.1.8 3.2 1.8 4.1 1.2-1.4 1.6-3.1 1.2-5.4 2.4 1.9 3.5 4.1 3.1 6.6-.5 3-3.1 5-6.2 5-3.6 0-6.4-2.4-6.4-5.9 0-4.2 3.1-6.2 5.2-8.5 1.5-1.7 2.3-2.9 2.5-4.3Z' fill='none' stroke='black' stroke-width='1.55' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --icon-chevron-right:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='m9 5 7 7-7 7' fill='none' stroke='black' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --icon-chevron-left:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='m15 5-7 7 7 7' fill='none' stroke='black' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --icon-gift:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 10h16v10H4V10Zm-1-4h18v4H3V6Zm9 0v14M12 6c-1.2-3-4.8-3.4-5.4-1.2C6.1 6.8 8.8 7 12 6Zm0 0c1.2-3 4.8-3.4 5.4-1.2.5 2-2.2 2.2-5.4 1.2Z' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --icon-bag:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4.5 8.5h15l-1 11h-13l-1-11Z' fill='none' stroke='black' stroke-width='1.7' stroke-linejoin='round'/%3E%3Cpath d='M8.5 9V6.8A3.5 3.5 0 0 1 12 3.3a3.5 3.5 0 0 1 3.5 3.5V9' fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round'/%3E%3C/svg%3E");
+  --icon-medal:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='14' r='5.2' fill='none' stroke='black' stroke-width='1.7'/%3E%3Cpath d='m9.3 9.5-3-6h4.2L12 7l1.5-3.5h4.2l-3 6M12 11.5v5' fill='none' stroke='black' stroke-width='1.7' stroke-linejoin='round' stroke-linecap='round'/%3E%3C/svg%3E");
+  --icon-star:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='m12 3 2.7 5.5 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1-4.4-4.3 6.1-.9L12 3Z' fill='none' stroke='black' stroke-width='1.6' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --icon-trophy:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8 4h8v4.5c0 3-1.7 5-4 5s-4-2-4-5V4Zm4 9.5V18m-4 2h8M8 6H4.5v1.5c0 2.2 1.4 3.5 3.6 3.7M16 6h3.5v1.5c0 2.2-1.4 3.5-3.6 3.7' fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --icon-watch:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='6.5' y='6.5' width='11' height='11' rx='3' fill='none' stroke='black' stroke-width='1.7'/%3E%3Cpath d='M9 6.5 10 3h4l1 3.5M9 17.5 10 21h4l1-3.5M9.5 12h2l1-2.2 1.2 4.4 1-2.2h1.8' fill='none' stroke='black' stroke-width='1.55' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --icon-share:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='18' cy='5' r='2.5' fill='none' stroke='black' stroke-width='1.7'/%3E%3Ccircle cx='6' cy='12' r='2.5' fill='none' stroke='black' stroke-width='1.7'/%3E%3Ccircle cx='18' cy='19' r='2.5' fill='none' stroke='black' stroke-width='1.7'/%3E%3Cpath d='m8.2 10.9 7.5-4.5M8.2 13.1l7.5 4.5' fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round'/%3E%3C/svg%3E");
+  --icon-clipboard:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='5' y='4.5' width='14' height='16' rx='2' fill='none' stroke='black' stroke-width='1.7'/%3E%3Cpath d='M9 5V3.5h6V5M8.5 10.5h7M8.5 14h7M8.5 17.5h4.5' fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round'/%3E%3C/svg%3E");
+  --icon-chat:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 5.5h14v10H9l-4 3v-13Z' fill='none' stroke='black' stroke-width='1.7' stroke-linejoin='round'/%3E%3Cpath d='M8.5 9.5h7M8.5 12h4.5' fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round'/%3E%3C/svg%3E");
+  --icon-phone:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7.2 3.8 9.5 8 7.7 9.8c1.5 3 3.1 4.6 6.1 6.1l1.8-1.8 4.2 2.3-1.1 3.1c-.3.9-1.2 1.4-2.1 1.2C8.5 19 5 15.5 3.3 7.4c-.2-.9.3-1.8 1.2-2.1l2.7-1.5Z' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --icon-mail:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='3.5' y='5.5' width='17' height='13' rx='2' fill='none' stroke='black' stroke-width='1.7'/%3E%3Cpath d='m4.5 7 7.5 6 7.5-6' fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+/* Shared image-mask renderer */
+.bottomNav button>span,
+.checkIcon,
+.streakFlame,
+.orderIcon,
+.orderStatus>b,
+.journeyCta>b,
+.quizOptions button>b,
+.giftIcon,
+.badgeMedal>span,
+.watchMark,
+.earnIcon,
+.trackSteps i,
+.journeyTabs>button{
+  position:relative;
+}
+
+.bottomNav button>span::before,
+.checkIcon::before,
+.streakFlame::before,
+.orderIcon::before,
+.orderStatus>b::before,
+.journeyCta>b::before,
+.quizOptions button>b::before,
+.giftIcon::before,
+.badgeMedal>span::before,
+.watchMark::before,
+.earnIcon::before,
+.trackSteps i::before,
+.journeyTabs>button::before{
+  content:"";
+  display:block;
+  width:100%;
+  height:100%;
+  background:currentColor;
+  -webkit-mask:var(--icon) center/contain no-repeat;
+  mask:var(--icon) center/contain no-repeat;
+}
+
+/* Bottom navigation */
+.bottomNav button>span{font-size:0!important;width:23px!important;height:23px!important;display:block!important;background:transparent!important;margin:0 auto 4px!important}
+.bottomNav button:nth-child(1)>span{--icon:var(--icon-home)}
+.bottomNav button:nth-child(2)>span{--icon:var(--icon-book)}
+.bottomNav button:nth-child(3)>span{--icon:var(--icon-package)}
+.bottomNav button:nth-child(4)>span{--icon:var(--icon-compass)}
+.bottomNav button:nth-child(5)>span{--icon:var(--icon-user)}
+
+/* Today */
+.checkIcon{font-size:0!important;width:44px!important;height:44px!important;display:grid!important;place-items:center!important;color:var(--color-background)!important}
+.checkIcon::before{width:24px;height:24px;--icon:var(--icon-circle)}
+.todayAction.done .checkIcon::before{--icon:var(--icon-check-circle)}
+.streakFlame{font-size:0!important;--icon:var(--icon-flame)}
+.streakFlame::before{width:22px;height:22px;margin:auto}
+.orderIcon{font-size:0!important;--icon:var(--icon-package)}
+.orderIcon::before{width:22px;height:22px;margin:auto}
+.orderStatus>b{font-size:0!important;width:22px!important;height:22px!important;--icon:var(--icon-chevron-right)}
+
+/* Learning, quizzes and directional affordances */
+.journeyCta>b{font-size:0!important;width:22px!important;height:22px!important;--icon:var(--icon-chevron-right)}
+.quizOptions button>b{font-size:0!important;width:20px!important;height:20px!important;flex:0 0 20px!important;--icon:var(--icon-chevron-right)}
+.journeyTabs>button{font-size:0!important;width:42px!important;height:42px!important;display:grid!important;place-items:center!important}
+.journeyTabs>button::before{width:18px;height:18px}
+.journeyTabs>button:first-child{--icon:var(--icon-chevron-left)}
+.journeyTabs>button:last-child{--icon:var(--icon-chevron-right)}
+
+/* Orders */
+.trackSteps i{font-size:0!important}
+.trackSteps i::before{width:17px;height:17px;margin:auto;--icon:var(--icon-circle)}
+.trackSteps .complete i::before{--icon:var(--icon-check)}
+.trackSteps .active i::before{--icon:var(--icon-package)}
+
+/* Rewards */
+.giftIcon{font-size:0!important;--icon:var(--icon-gift)}
+.giftIcon::before{width:26px;height:26px;margin:auto}
+.giftCard:nth-child(2) .giftIcon{--icon:var(--icon-bag)}
+.giftCard.unlocked .giftIcon{--icon:var(--icon-check-circle)}
+.badgeMedal>span{font-size:0!important;display:block!important;width:25px!important;height:25px!important;margin:auto!important;--icon:var(--icon-medal)}
+.badgeCard:nth-child(1) .badgeMedal>span{--icon:var(--icon-flame)}
+.badgeCard:nth-child(2) .badgeMedal>span{--icon:var(--icon-medal)}
+.badgeCard:nth-child(3) .badgeMedal>span{--icon:var(--icon-book)}
+.badgeCard:nth-child(4) .badgeMedal>span{--icon:var(--icon-star)}
+.badgeCard.unlocked .badgeMedal>span{--icon:var(--icon-check)}
+.watchMark{font-size:0!important;--icon:var(--icon-watch)}
+.watchMark::before{width:30px;height:30px;margin:auto}
+.earnIcon{font-size:0!important}
+.earnIcon::before{width:20px;height:20px;margin:auto}
+.earnList article:nth-child(1) .earnIcon{--icon:var(--icon-check-circle)}
+.earnList article:nth-child(2) .earnIcon{--icon:var(--icon-book)}
+.earnList article:nth-child(3) .earnIcon{--icon:var(--icon-star)}
+.earnList article:nth-child(4) .earnIcon{--icon:var(--icon-share)}
+
+/* Member portal support cards get real utility icons without changing content markup */
+.supportGrid>a,.supportGrid>button{position:relative;padding-left:3.35rem!important}
+.supportGrid>a::before,.supportGrid>button::before{content:"";position:absolute;left:1rem;top:50%;transform:translateY(-50%);width:22px;height:22px;background:var(--color-primary);-webkit-mask:var(--icon) center/contain no-repeat;mask:var(--icon) center/contain no-repeat}
+.supportGrid>a:nth-child(1){--icon:var(--icon-phone)}
+.supportGrid>a:nth-child(2){--icon:var(--icon-mail)}
+.supportGrid>button{--icon:var(--icon-chat)}
+
+/* Wellness cards */
+.quizCards article{position:relative}
+.quizCards article::before{content:"";position:absolute;right:1.15rem;top:1.15rem;width:22px;height:22px;background:var(--color-primary);-webkit-mask:var(--icon-clipboard) center/contain no-repeat;mask:var(--icon-clipboard) center/contain no-repeat;opacity:.8}
+
+/* Keep the system calm and consistent */
+.bottomNav button>span::before,.orderStatus>b::before,.journeyCta>b::before,.quizOptions button>b::before,.journeyTabs>button::before{transition:transform .15s ease-in-out}
+.bottomNav button:active>span::before,.orderStatus:active>b::before,.journeyCta:active>b::before,.quizOptions button:active>b::before{transform:scale(.92)}
+@media(prefers-reduced-motion:reduce){.bottomNav button>span::before,.orderStatus>b::before,.journeyCta>b::before,.quizOptions button>b::before,.journeyTabs>button::before{transition:none}}
