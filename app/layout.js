@@ -5,12 +5,13 @@ import './brand-system.css';
 import './portal.css';
 import './gamification.css';
 import './wellness.css';
+import './native-polish.css';
 
 export const metadata = {
   title: 'My Dose',
   description: 'Dose member experience V0',
   manifest: '/manifest.webmanifest',
-  themeColor: '#FBF7EE',
+  themeColor: '#F6F1E7',
   viewport: 'width=device-width, initial-scale=1, viewport-fit=cover'
 };
 
