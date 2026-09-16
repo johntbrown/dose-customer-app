@@ -7,6 +7,7 @@ import './gamification.css';
 import './wellness.css';
 import './native-polish.css';
 import './icon-system.css';
+import './features.css';
 
 export const metadata = {
   title: 'My Dose',
