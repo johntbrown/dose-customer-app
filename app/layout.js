@@ -13,6 +13,7 @@ import './journey-integrated.css';
 import './you-hub.css';
 import './design-foundation.css';
 import './celebrations.css';
+import './badge-takeover.css';
 
 export const metadata = {
   title: 'My Dose',
