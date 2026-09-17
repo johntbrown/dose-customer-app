@@ -11,6 +11,8 @@ import './features.css';
 import './priority-home.css';
 import './journey-integrated.css';
 import './you-hub.css';
+import './design-foundation.css';
+import './celebrations.css';
 
 export const metadata = {
   title: 'My Dose',
