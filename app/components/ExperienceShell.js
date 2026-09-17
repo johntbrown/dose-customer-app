@@ -6,7 +6,13 @@ export default function ExperienceShell({ children }) {
   const [offline,setOffline]=useState(false);
   const [toast,setToast]=useState(null);
   const [restored,setRestored]=useState(false);
+  const [booting,setBooting]=useState(true);
   const timerRef=useRef(null);
+
+  useEffect(()=>{
+    const id=window.setTimeout(()=>setBooting(false),260);
+    return()=>window.clearTimeout(id);
+  },[]);
 
   useEffect(()=>{
     const update=()=>{
@@ -43,6 +49,7 @@ export default function ExperienceShell({ children }) {
   },[]);
 
   return <>
+    {booting&&<div className="doseBootVeil" aria-hidden="true"><div><strong>Dose</strong><i/></div></div>}
     {(offline||restored)&&<div className={`connectionBanner ${offline?'offline':'restored'}`} role="status" aria-live="polite">
       <span className="connectionDot"/>
       <div><strong>{offline?'You’re offline':'Back online'}</strong><small>{offline?'Your saved progress stays on this device. Changes that need the server will wait until you reconnect.':'Your connection has been restored.'}</small></div>
