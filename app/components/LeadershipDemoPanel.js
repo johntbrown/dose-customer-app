@@ -11,6 +11,7 @@ export default function LeadershipDemoPanel({ onTrigger, onReset, currentDay=1 }
         e.preventDefault();
         setOpen(v=>!v);
       }
+      if(e.key==='Escape') setOpen(false);
     };
     window.addEventListener('keydown',key);
     return()=>window.removeEventListener('keydown',key);
@@ -32,6 +33,7 @@ export default function LeadershipDemoPanel({ onTrigger, onReset, currentDay=1 }
           <button onClick={()=>onTrigger?.('review')}><b>Review</b><span>Community Voice</span></button>
           <button onClick={()=>onTrigger?.('challenge')}><b>Challenge</b><span>Major completion</span></button>
         </div>
+        <a className="statePreviewLink" href="/states"><span><strong>Production-state QA</strong><small>Loading, empty, error, stale, saving, and success states</small></span><b>→</b></a>
         <div className="demoControlFooter"><button onClick={onReset}>Reset demo progress</button><small>Shortcut: ⌘/Ctrl + Shift + D</small></div>
       </section>
     </div>}
