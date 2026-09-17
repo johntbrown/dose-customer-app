@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { DEFAULT_PROGRESS, PROGRESS_VERSION } from './progressEngine';
+import { emitDoseToast } from './asyncContract';
 
 const STORAGE_KEY = 'my-dose-progress-v1';
 
@@ -18,6 +19,7 @@ export default function usePersistentProgress() {
       }
     } catch (error) {
       console.warn('Unable to restore prototype progress', error);
+      emitDoseToast({tone:'warning',title:'Saved progress unavailable',message:'My Dose opened normally, but this browser could not restore your local demo progress.'});
     } finally {
       setHydrated(true);
     }
@@ -29,6 +31,7 @@ export default function usePersistentProgress() {
       window.localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
     } catch (error) {
       console.warn('Unable to persist prototype progress', error);
+      emitDoseToast({tone:'warning',title:'Progress not saved on this device',message:'You can keep using the demo, but changes may reset after refresh.'});
     }
   }, [progress, hydrated]);
 
