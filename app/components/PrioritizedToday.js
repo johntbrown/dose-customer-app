@@ -1,5 +1,7 @@
 'use client';
 
+import { useInteraction } from './InteractionProvider';
+
 const LIVER='https://cdn.shopify.com/s/files/1/0348/3317/0477/files/liver-alt-media-bottle-no-badge.png?v=1770661532&width=900';
 const LIVER_LIFE='https://dosedaily.co/cdn/shop/files/liver-home-product-section-up_900x.jpg?v=1613554269';
 
@@ -20,10 +22,24 @@ const primaryCopy={
 };
 
 export default function PrioritizedToday({member,decision,currentStreak,points,cashback,unlocked,badgeCount,rewardProgress,nextReward,lessonCount,taken,onTaken,onNavigate,onWellness}){
+  const {runAction,stateFor}=useInteraction();
   const copy=primaryCopy[decision.primary_action_id]||primaryCopy.none;
   const modules=decision.supporting_module_ids||[];
-  const runPrimary=()=>{
-    if(decision.primary_action_id==='log_routine'){onTaken?.();return;}
+  const routineState=stateFor('routine.log');
+  const routinePending=routineState.status==='pending';
+
+  const runPrimary=async()=>{
+    if(decision.primary_action_id==='log_routine'){
+      await runAction('routine.log',{
+        optimistic:onTaken,
+        rollback:onTaken,
+        successTitle:taken?'Routine updated':'Dose logged',
+        successMessage:taken?'Your previous routine state has been restored.':`${currentStreak+1} day streak. Your progress is synced across My Dose.`,
+        errorTitle:'Dose wasn’t logged',
+        errorMessage:'We restored your previous state so your streak and rewards stay accurate.',
+      });
+      return;
+    }
     if(decision.primary_action_target==='Wellness'){onWellness?.();return;}
     onNavigate?.(decision.primary_action_target||'Journey');
   };
@@ -32,11 +48,13 @@ export default function PrioritizedToday({member,decision,currentStreak,points,c
   return <div className="page">
     <section className="welcome compact"><div><span className="eyebrow">Day {member.lifecycle.day} · Your liver journey</span><h1>Good afternoon,<br/>{member.identity.first_name}.</h1><p>Here’s the most useful thing to focus on today.</p></div><img src={LIVER} alt="Dose for your Liver"/></section>
 
-    <section className={`todayAction prioritizedPrimary priority-${decision.primary_action_priority}`}>
-      <div className="checkIcon">{decision.primary_action_id==='log_routine'?(taken?'✓':'○'):'→'}</div>
-      <div><span className="eyebrow light">{copy.eyebrow}</span><h2>{decision.primary_action_id==='log_routine'&&taken?'Daily Dose complete':copy.title}</h2><p>{decision.primary_action_id==='log_routine'&&taken?`${currentStreak} day streak. Nice work.`:copy.body}</p></div>
-      <button onClick={runPrimary}>{decision.primary_action_id==='log_routine'&&taken?'Done':decision.primary_action_cta}</button>
+    <section className={`todayAction prioritizedPrimary priority-${decision.primary_action_priority} ${routinePending?'isSaving':''}`} aria-busy={routinePending}>
+      <div className="checkIcon">{routinePending?<span className="inlineActionSpinner light"/>:decision.primary_action_id==='log_routine'?(taken?'✓':'○'):'→'}</div>
+      <div><span className="eyebrow light">{copy.eyebrow}</span><h2>{routinePending?'Saving your routine…':decision.primary_action_id==='log_routine'&&taken?'Daily Dose complete':copy.title}</h2><p>{routinePending?'Keeping your progress consistent across Today, Journey, and Rewards.':decision.primary_action_id==='log_routine'&&taken?`${currentStreak} day streak. Nice work.`:copy.body}</p></div>
+      <button disabled={routinePending} onClick={runPrimary}>{routinePending?'Saving…':decision.primary_action_id==='log_routine'&&taken?'Done':decision.primary_action_cta}</button>
     </section>
+
+    {routineState.status==='error'&&<div className="inlineRecoveryMessage" role="status"><strong>Nothing was lost.</strong><span>Your previous routine state was restored. Try again when your connection is stable.</span></div>}
 
     <div className="homePriorityMeta"><span>Personalized for today</span><small>{decision.rule_version} · {decision.primary_action_reason.replaceAll('_',' ')}</small></div>
 
