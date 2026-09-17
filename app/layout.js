@@ -17,6 +17,8 @@ import './milestone-celebration.css';
 import './demo-controls.css';
 import './experience-polish.css';
 import './design-foundation.css';
+import './experience-state.css';
+import ExperienceShell from './components/ExperienceShell';
 
 export const metadata = {
   title: 'My Dose',
@@ -29,7 +31,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body><ExperienceShell>{children}</ExperienceShell></body>
     </html>
   );
 }
