@@ -12,6 +12,7 @@ export default function InteractionProvider({ children }) {
   const [mode,setMode]=useState('normal');
   const [actions,setActions]=useState({});
   const modeRef=useRef(mode);
+  const inFlightRef=useRef(new Set());
 
   useEffect(()=>{ modeRef.current=mode; },[mode]);
 
@@ -38,7 +39,7 @@ export default function InteractionProvider({ children }) {
     pendingTitle,
     silentSuccess=false,
   }={})=>{
-    if((actions[key]||DEFAULT_STATE).status==='pending') return { ok:false, duplicate:true };
+    if(inFlightRef.current.has(key)) return {ok:false,duplicate:true};
 
     if(typeof navigator!=='undefined' && !navigator.onLine){
       const error=new Error('You are offline');
@@ -47,6 +48,7 @@ export default function InteractionProvider({ children }) {
       return {ok:false,error};
     }
 
+    inFlightRef.current.add(key);
     setActions(prev=>({...prev,[key]:{status:'pending',error:null,updatedAt:Date.now(),pendingTitle}}));
     try{
       await optimistic?.();
@@ -67,8 +69,10 @@ export default function InteractionProvider({ children }) {
       setActions(prev=>({...prev,[key]:{status:'error',error,updatedAt:Date.now()}}));
       emitDoseToast({tone:'error',title:errorTitle,message:errorMessage});
       return {ok:false,error};
+    }finally{
+      inFlightRef.current.delete(key);
     }
-  },[actions]);
+  },[]);
 
   const value=useMemo(()=>({mode,setMode,stateFor,runAction}),[mode,stateFor,runAction]);
   return <InteractionContext.Provider value={value}>{children}</InteractionContext.Provider>;
