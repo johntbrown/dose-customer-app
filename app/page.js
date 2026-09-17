@@ -3,19 +3,13 @@
 import { useMemo, useState } from 'react';
 import MemberPortal from './components/MemberPortal';
 import PrioritizedToday from './components/PrioritizedToday';
+import JourneyHub from './components/JourneyHub';
 import { getDemoMemberState } from './lib/memberState';
 import { getHomeDecision } from './lib/homePriority';
 
 const LIVER='https://cdn.shopify.com/s/files/1/0348/3317/0477/files/liver-alt-media-bottle-no-badge.png?v=1770661532&width=900';
 const LIVER_LIFE='https://dosedaily.co/cdn/shop/files/liver-home-product-section-up_900x.jpg?v=1613554269';
 const CHOL='https://dosedaily.co/cdn/shop/files/cholesterol-alt-media-bottle.png?v=1770054243&width=900';
-
-const milestones=[
-  ['Month 1','Build the habit','Your first phase is about consistent daily intake and learning your routine.'],
-  ['Month 3','Look for shifts','A meaningful checkpoint for how you feel and for reviewing measurable progress.'],
-  ['Month 6','Check your numbers','A natural point to review bloodwork and compare how your numbers are trending.'],
-  ['Month 12','Your new baseline','A full year of consistent routine and long-term support.'],
-];
 
 const badgeCatalog=[
   {id:'starter',name:'7-Day Starter',goal:7,type:'streak'},
@@ -79,8 +73,6 @@ export default function Home(){
 
   const Header=()=> <><header className="appHeader"><button className="logo" onClick={()=>go('Today')}>Dose</button><span className="demoPill">John · Member</span><button className="avatar" onClick={()=>go('You')}>J</button></header><div className="profileSwitch"><span>Demo state</span><select value={profileKey} onChange={e=>{setProfileKey(e.target.value);setTaken(false);setLessonCount(getDemoMemberState(e.target.value).education.completed_modules);setReviewed(false);}}>{Object.entries(labels).map(([key,label])=><option value={key} key={key}>{label}</option>)}</select></div></>;
 
-  const Journey=()=> <div className="page"><section className="simpleHero"><span className="eyebrow">Journey</span><h1>Your first 90 days,<br/>made visible.</h1><p>Progress, expectations, check-ins, milestones, and history in one place.</p></section><a href="/features" className="featureHubEntry"><div><span className="portalKicker">Journey beta</span><h2>Open the 90-day calendar and insights prototype.</h2><p>Explore history, wellness trends, challenges, Circle, connected routine, and the 90-day report.</p></div><b>Open Journey beta →</b></a><section className="journeyTimeline">{milestones.map((x,i)=><article key={x[0]} className={i===Math.min(member.lifecycle.month-1,3)?'current':''}><div className="milestoneDot">{i+1}</div><div><span>{x[0]}</span><h2>{x[1]}</h2><p>{x[2]}</p></div></article>)}</section></div>;
-
   const Learn=()=> <div className="page"><section className="simpleHero"><span className="eyebrow">Learn</span><h1>Know your Dose.</h1><p>Product education, expectations, and clinical context in one place.</p></section><section className="learnFeatured"><img src={LIVER_LIFE} alt="Dose for your Liver"/><div><span className="eyebrow">Start here</span><h2>Dose for your Liver</h2><p>Learn how to take it, what’s inside, and how to think about progress over time.</p></div></section><div className="sectionHead"><div><span className="eyebrow">Liver Masterclass</span><h2>Learn in 3 quick steps.</h2></div><span className="lessonReward">+25 pts each</span></div><section className="lessonRail">{['Meet your daily Dose','What to expect in Month 1','How to measure progress'].map((title,i)=>{const complete=i<lessonCount;return <button className={complete?'lessonTile lessonDone':'lessonTile'} key={title} onClick={()=>setLessonCount(Math.max(lessonCount,i+1))}><div className="lessonCover"><span>0{i+1}</span><small>{complete?'Complete':'Liver health'}</small></div><div><small>Day {i+1} · {i===1?'4':'3'} min</small><strong>{title}</strong><span>{complete?'Complete':'+25 pts · Complete lesson →'}</span></div></button>;})}</section></div>;
 
   const Orders=()=> <div className="page"><section className="simpleHero"><span className="eyebrow">Orders</span><h1>Know exactly<br/>where it is.</h1><p>Track the order that keeps your routine going.</p></section><section className="trackingCard"><div className="trackingTop"><span className={member.order.shipment_exception?'status':'status live'}>{member.order.shipment_exception?'Needs attention':'In transit'}</span><span>#DOSE-28491</span></div><img src={LIVER} alt="Dose order"/><h2>{member.order.shipment_exception?'Review your shipment':`Arriving ${member.order.eta_label}`}</h2><p>{member.product.primary_product} · 1 bottle</p><div className="trackSteps"><div className="complete"><i>✓</i><span><strong>Order confirmed</strong><small>September 28</small></span></div><div className="complete"><i>✓</i><span><strong>Shipped</strong><small>September 29</small></span></div><div className="active"><i>•</i><span><strong>{member.order.shipment_exception?'Exception':'In transit'}</strong><small>{member.order.shipment_exception?'Tap support if you need help':'On the way to you'}</small></span></div></div><button className="primary spaciousPrimary" onClick={()=>go('Plan')}>Manage next order</button></section></div>;
@@ -96,7 +88,7 @@ export default function Home(){
 
   let content;
   if(page==='Today') content=<PrioritizedToday member={member} decision={decision} currentStreak={currentStreak} points={points} cashback={cashback} unlocked={unlocked} badgeCount={badgeCatalog.length} rewardProgress={rewardProgress} nextReward={nextReward} lessonCount={lessonCount} taken={todayTaken} onTaken={()=>setTaken(!taken)} onNavigate={go} onWellness={()=>startQuiz(member.check_in?.due?'routine':'goals')}/>;
-  else if(page==='Journey') content=<Journey/>;
+  else if(page==='Journey') content=<JourneyHub member={member} currentStreak={currentStreak} points={points}/>;
   else if(page==='Learn') content=<Learn/>;
   else if(page==='Orders') content=<Orders/>;
   else if(page==='Plan') content=<Plan/>;
