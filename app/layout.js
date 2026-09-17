@@ -19,7 +19,9 @@ import './experience-polish.css';
 import './design-foundation.css';
 import './experience-state.css';
 import './boot-polish.css';
+import './interaction-polish.css';
 import ExperienceShell from './components/ExperienceShell';
+import InteractionProvider from './components/InteractionProvider';
 
 export const metadata = {
   title: 'My Dose',
@@ -32,7 +34,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body><ExperienceShell>{children}</ExperienceShell></body>
+      <body><InteractionProvider><ExperienceShell>{children}</ExperienceShell></InteractionProvider></body>
     </html>
   );
 }
