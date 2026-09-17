@@ -1,0 +1,204 @@
+/* Canonical My Dose visual foundation
+   Loaded last. This file is the final visual authority for shared UI tokens,
+   component rhythm, focus states, and premium wellness polish. */
+
+:root{
+  --dose-bg:#FBF7EE;
+  --dose-surface:#FFFFFF;
+  --dose-surface-soft:#F0ECE2;
+  --dose-surface-muted:#E9E3D8;
+  --dose-ink:#182119;
+  --dose-muted:#70766F;
+  --dose-green:#344633;
+  --dose-green-2:#425740;
+  --dose-line:rgba(52,70,51,.12);
+  --dose-line-strong:rgba(52,70,51,.22);
+  --dose-shadow-1:0 4px 16px rgba(31,41,31,.055);
+  --dose-shadow-2:0 14px 38px rgba(31,41,31,.08);
+  --dose-shadow-3:0 28px 80px rgba(31,41,31,.11);
+  --dose-radius-sm:16px;
+  --dose-radius-md:22px;
+  --dose-radius-lg:28px;
+  --dose-pill:999px;
+  --dose-space-1:8px;
+  --dose-space-2:12px;
+  --dose-space-3:16px;
+  --dose-space-4:20px;
+  --dose-space-5:28px;
+  --dose-space-6:36px;
+  --dose-space-7:48px;
+  --dose-motion-fast:140ms;
+  --dose-motion:220ms;
+  --dose-motion-slow:520ms;
+
+  /* Compatibility mappings while legacy layers are removed incrementally. */
+  --app-bg:var(--dose-bg);
+  --app-surface:var(--dose-surface);
+  --app-surface-soft:var(--dose-surface-soft);
+  --app-ink:var(--dose-ink);
+  --app-muted:var(--dose-muted);
+  --app-green:var(--dose-green);
+  --app-border:var(--dose-line);
+  --app-shadow:var(--dose-shadow-2);
+  --app-shadow-soft:var(--dose-shadow-1);
+  --app-radius:var(--dose-radius-lg);
+  --app-radius-sm:var(--dose-radius-md);
+
+  --fd-bg:var(--dose-bg);
+  --fd-card:var(--dose-surface);
+  --fd-ink:var(--dose-ink);
+  --fd-green:var(--dose-green);
+  --fd-muted:var(--dose-muted);
+  --fd-line:var(--dose-line);
+  --fd-soft:var(--dose-surface-soft);
+  --fd-radius:var(--dose-radius-lg);
+}
+
+html,body{background:#EEE9E0!important;color:var(--dose-ink)}
+body{font-feature-settings:"kern" 1,"liga" 1;text-rendering:optimizeLegibility}
+
+.appShell{
+  background:
+    radial-gradient(circle at 50% -10%,rgba(255,255,255,.72),transparent 30%),
+    var(--dose-bg)!important;
+  box-shadow:0 0 0 1px rgba(52,70,51,.04),var(--dose-shadow-3)!important;
+}
+
+/* Shared premium surfaces */
+.todayAction,.streakStrip,.wellnessPrompt,.dailyTip,.rewardSnapshot,.expectationCard,
+.learningHero,.learnFeatured,.journeyCta,.trackingCard,.productDiscovery,.planProduct,
+.nextOrder,.levelCard,.badgeCard,.giftCard,.leaderboard,.wearableCard,.earnList,
+.wellnessResultCard,.quizCards article,.resultsGrid article,.quizRunner,.wellnessProfileEntry,
+.successCard,.subscriptionBar,.journeyPanel,.supportGrid>a,.supportGrid>button,.perkGrid article,
+.portalRewardSummary,.featureCard,.patternCard,.circleBonus,.reportSheet,.youCard,.youPanel,
+.journeyPanelIntegrated,.journeyInsightCard,.journeyChallengeCard{
+  border:1px solid var(--dose-line)!important;
+  border-radius:var(--dose-radius-lg)!important;
+  box-shadow:var(--dose-shadow-1)!important;
+  transition:transform var(--dose-motion-fast) ease,box-shadow var(--dose-motion) ease,border-color var(--dose-motion) ease,background var(--dose-motion) ease;
+}
+
+button,a,[role="button"]{-webkit-tap-highlight-color:transparent}
+button{font:inherit}
+
+/* Interactive lift only where it supports intent. */
+.lessonTile,.orderStatus,.journeyCta,.recipeCard,.productDiscovery button,.supportGrid>a,.supportGrid>button,
+.featureHubEntry,.youActionCard,.journeyChallengeCard button,.reportActions button,.portalPrimary,.portalSecondary,
+.primary,.spaciousPrimary,.featurePrimary,.featureSecondary{
+  transition:transform var(--dose-motion-fast) ease,box-shadow var(--dose-motion) ease,background var(--dose-motion) ease,border-color var(--dose-motion) ease;
+}
+
+@media (hover:hover){
+  .lessonTile:hover,.orderStatus:hover,.journeyCta:hover,.recipeCard:hover,.supportGrid>a:hover,.supportGrid>button:hover,
+  .featureHubEntry:hover,.youActionCard:hover{transform:translateY(-2px);box-shadow:var(--dose-shadow-2)!important}
+  .portalPrimary:hover,.portalSecondary:hover,.primary:hover,.spaciousPrimary:hover,.featurePrimary:hover,.featureSecondary:hover,
+  .journeyChallengeCard button:hover,.reportActions button:hover{transform:translateY(-1px) scale(1.015)}
+}
+
+/* Consistent controls */
+.portalPrimary,.primary,.spaciousPrimary,.featurePrimary,.todayAction>button,.wellnessPrompt button,
+.rewardSnapshotTop button,.productBottom button,.quizCards button,.journalGrid button.active{
+  min-height:50px!important;
+  border-radius:var(--dose-pill)!important;
+  background:var(--dose-green)!important;
+  color:#fff!important;
+  border:1px solid var(--dose-green)!important;
+  font-weight:650!important;
+  letter-spacing:-.01em;
+  box-shadow:0 6px 18px rgba(52,70,51,.12)!important;
+}
+
+.portalSecondary,.featureSecondary,.sectionHead>button,.portalSectionHead>button,.filterRow button,
+.journeyTabs button,.quizBack{
+  min-height:44px;
+  border-radius:var(--dose-pill)!important;
+  border:1px solid var(--dose-line-strong)!important;
+  background:rgba(255,255,255,.78)!important;
+  color:var(--dose-ink)!important;
+}
+
+/* Typography hierarchy */
+.simpleHero h1,.welcome h1,.portalWelcome h1,.featureHero h1,.youHero h1{
+  text-wrap:balance;
+  letter-spacing:-.045em!important;
+}
+.simpleHero p,.welcome p,.portalWelcome p,.featureHero p,.youHero p{
+  color:var(--dose-muted)!important;
+}
+.eyebrow,.portalKicker,.featureEyebrow{
+  letter-spacing:.12em!important;
+  color:#697067!important;
+}
+
+/* Navigation polish */
+.bottomNav{
+  background:rgba(251,247,238,.92)!important;
+  border-top:1px solid rgba(52,70,51,.09)!important;
+  backdrop-filter:blur(22px) saturate(1.15);
+  box-shadow:0 -10px 34px rgba(31,41,31,.055)!important;
+}
+.bottomNav button{
+  min-height:64px;
+  border-radius:18px!important;
+  transition:background var(--dose-motion) ease,color var(--dose-motion) ease,transform var(--dose-motion-fast) ease;
+}
+.bottomNav button.active{background:rgba(52,70,51,.08)!important}
+.bottomNav button:active{transform:scale(.96)}
+
+/* Header becomes quieter and more native. */
+.appHeader{
+  border-bottom:1px solid rgba(52,70,51,.07)!important;
+  background:rgba(251,247,238,.89)!important;
+  backdrop-filter:blur(22px) saturate(1.12)!important;
+}
+.profileSwitch{
+  background:rgba(255,255,255,.68)!important;
+  box-shadow:0 4px 14px rgba(31,41,31,.035)!important;
+}
+
+/* Better density and mobile reading sizes. */
+.eyebrow,.portalKicker,.featureEyebrow{font-size:10px!important}
+.portalPage p,.page p,.featurePage p{font-size:max(12px,inherit)}
+.supportGrid strong,.subscriptionCopy strong,.circleList strong{font-size:13px!important}
+
+/* Focus */
+:where(button,a,input,select,textarea):focus-visible{
+  outline:3px solid rgba(52,70,51,.34)!important;
+  outline-offset:3px!important;
+}
+
+/* Soft entrance for major screens, intentionally restrained. */
+.page,.portalPage,.journeyIntegrated,.youHub{
+  animation:dosePageIn 360ms cubic-bezier(.2,.72,.2,1) both;
+}
+@keyframes dosePageIn{
+  from{opacity:0;transform:translateY(6px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* Primary-action pulse: only for actionable, unresolved Today states. */
+.todayAction:not(.done){position:relative}
+.todayAction:not(.done)::after{
+  content:"";
+  position:absolute;
+  inset:-1px;
+  border-radius:inherit;
+  pointer-events:none;
+  box-shadow:0 0 0 0 rgba(255,255,255,.26);
+  animation:doseIntentPulse 2.8s ease-out infinite;
+}
+@keyframes doseIntentPulse{
+  0%,62%{box-shadow:0 0 0 0 rgba(255,255,255,0)}
+  72%{box-shadow:0 0 0 0 rgba(255,255,255,.24)}
+  100%{box-shadow:0 0 0 12px rgba(255,255,255,0)}
+}
+
+@media(max-width:480px){
+  .page,.lessonPage,.wellnessPage,.portalPage{padding-left:18px!important;padding-right:18px!important}
+  .simpleHero h1,.welcome h1{font-size:40px!important}
+  .sectionHead h2,.portalSectionHead h2{font-size:27px!important}
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+}
