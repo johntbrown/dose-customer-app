@@ -31,12 +31,11 @@ export default function PrioritizedToday({member,decision,currentStreak,points,c
   const runPrimary=async()=>{
     if(decision.primary_action_id==='log_routine'){
       await runAction('routine.log',{
-        optimistic:onTaken,
-        rollback:onTaken,
+        onSuccess:onTaken,
         successTitle:taken?'Routine updated':'Dose logged',
-        successMessage:taken?'Your previous routine state has been restored.':`${currentStreak+1} day streak. Your progress is synced across My Dose.`,
+        successMessage:taken?'Your routine state has been updated.':`${currentStreak+1} day streak. Your progress is synced across My Dose.`,
         errorTitle:'Dose wasn’t logged',
-        errorMessage:'We restored your previous state so your streak and rewards stay accurate.',
+        errorMessage:'Nothing changed, so your streak and rewards remain accurate.',
       });
       return;
     }
@@ -50,11 +49,11 @@ export default function PrioritizedToday({member,decision,currentStreak,points,c
 
     <section className={`todayAction prioritizedPrimary priority-${decision.primary_action_priority} ${routinePending?'isSaving':''}`} aria-busy={routinePending}>
       <div className="checkIcon">{routinePending?<span className="inlineActionSpinner light"/>:decision.primary_action_id==='log_routine'?(taken?'✓':'○'):'→'}</div>
-      <div><span className="eyebrow light">{copy.eyebrow}</span><h2>{routinePending?'Saving your routine…':decision.primary_action_id==='log_routine'&&taken?'Daily Dose complete':copy.title}</h2><p>{routinePending?'Keeping your progress consistent across Today, Journey, and Rewards.':decision.primary_action_id==='log_routine'&&taken?`${currentStreak} day streak. Nice work.`:copy.body}</p></div>
+      <div><span className="eyebrow light">{copy.eyebrow}</span><h2>{routinePending?'Saving your routine…':decision.primary_action_id==='log_routine'&&taken?'Daily Dose complete':copy.title}</h2><p>{routinePending?'Waiting for confirmation before updating streaks, rewards, and Journey.':decision.primary_action_id==='log_routine'&&taken?`${currentStreak} day streak. Nice work.`:copy.body}</p></div>
       <button disabled={routinePending} onClick={runPrimary}>{routinePending?'Saving…':decision.primary_action_id==='log_routine'&&taken?'Done':decision.primary_action_cta}</button>
     </section>
 
-    {routineState.status==='error'&&<div className="inlineRecoveryMessage" role="status"><strong>Nothing was lost.</strong><span>Your previous routine state was restored. Try again when your connection is stable.</span></div>}
+    {routineState.status==='error'&&<div className="inlineRecoveryMessage" role="status"><strong>Nothing was lost.</strong><span>Your previous routine state is unchanged. Try again when your connection is stable.</span></div>}
 
     <div className="homePriorityMeta"><span>Personalized for today</span><small>{decision.rule_version} · {decision.primary_action_reason.replaceAll('_',' ')}</small></div>
 
