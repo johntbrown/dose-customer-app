@@ -9,6 +9,7 @@ import './native-polish.css';
 import './icon-system.css';
 import './features.css';
 import './priority-home.css';
+import './journey-integrated.css';
 
 export const metadata = {
   title: 'My Dose',
