@@ -5,6 +5,7 @@ import MemberPortal from './components/MemberPortal';
 import PrioritizedToday from './components/PrioritizedToday';
 import JourneyHub from './components/JourneyHub';
 import CelebrationBurst from './components/CelebrationBurst';
+import BadgeUnlockTakeover from './components/BadgeUnlockTakeover';
 import { getDemoMemberState } from './lib/memberState';
 import { getHomeDecision } from './lib/homePriority';
 
@@ -18,6 +19,13 @@ const badgeCatalog=[
   {id:'learner',name:'Dose Scholar',goal:3,type:'lessons'},
   {id:'reviewer',name:'Community Voice',goal:1,type:'review'},
 ];
+
+const badgeCelebrations={
+  starter:{name:'7-Day Starter',description:'Seven consistent days. Your routine is taking shape.',reward:'+150 prototype points',mark:'7'},
+  cycle:{name:'Full Cycle',description:'You completed a full 24-day Dose cycle and kept the routine moving.',reward:'250 prototype points',mark:'24'},
+  learner:{name:'Dose Scholar',description:'You completed every Masterclass lesson in your current learning track.',reward:'+75 prototype points',mark:'★'},
+  reviewer:{name:'Community Voice',description:'You shared your experience and helped another member know what to expect.',reward:'+100 prototype points',mark:'★'},
+};
 
 const tierCatalog=[{name:'Bronze',min:0,max:1499},{name:'Silver',min:1500,max:2999},{name:'Gold',min:3000,max:4999}];
 
@@ -47,6 +55,7 @@ export default function Home(){
   const [quizStep,setQuizStep]=useState(0);
   const [quizAnswers,setQuizAnswers]=useState({goals:{},routine:{}});
   const [quizCompleted,setQuizCompleted]=useState({goals:false,routine:false});
+  const [badgeTakeover,setBadgeTakeover]=useState(null);
 
   const baseMember=useMemo(()=>getDemoMemberState(profileKey),[profileKey]);
   const baseTaken=baseMember.routine.today_status==='taken';
@@ -71,6 +80,8 @@ export default function Home(){
   const go=target=>{setPage(target);setQuizMode(null);setQuizStep(0);window.scrollTo({top:0,behavior:'smooth'});};
   const startQuiz=type=>{setPage('Wellness');setQuizMode(type);setQuizStep(0);window.scrollTo({top:0,behavior:'smooth'});};
   const answerQuiz=(type,id,value)=>{const next={...quizAnswers,[type]:{...quizAnswers[type],[id]:value}};setQuizAnswers(next);if(quizStep===quizzes[type].questions.length-1){setQuizCompleted({...quizCompleted,[type]:true});setQuizMode(null);setQuizStep(0);}else setQuizStep(quizStep+1);};
+  const submitReview=()=>{if(!reviewed){setReviewed(true);setBadgeTakeover(badgeCelebrations.reviewer);}};
+  const previewBadgeUnlock=()=>setBadgeTakeover(badgeCelebrations.cycle);
 
   const Header=()=> <><header className="appHeader"><button className="logo" onClick={()=>go('Today')}>Dose</button><span className="demoPill">John · Member</span><button className="avatar" onClick={()=>go('You')}>J</button></header><div className="profileSwitch"><span>Demo state</span><select value={profileKey} onChange={e=>{setProfileKey(e.target.value);setTaken(false);setLessonCount(getDemoMemberState(e.target.value).education.completed_modules);setReviewed(false);}}>{Object.entries(labels).map(([key,label])=><option value={key} key={key}>{label}</option>)}</select></div></>;
 
@@ -83,7 +94,7 @@ export default function Home(){
   const Wellness=()=>{if(quizMode){const q=quizzes[quizMode];const item=q.questions[quizStep];return <div className="page wellnessPage"><button className="quizBack" onClick={()=>{setQuizMode(null);setQuizStep(0);}}>← Back to wellness profile</button><section className="quizRunner"><div className="quizProgress"><i style={{width:`${((quizStep+1)/q.questions.length)*100}%`}}/></div><span className="eyebrow">{q.title} · {quizStep+1} of {q.questions.length}</span><h1>{item.text}</h1><div className="quizOptions">{item.options.map(option=><button key={option} onClick={()=>answerQuiz(quizMode,item.id,option)}>{option}<b>→</b></button>)}</div></section></div>;}
     return <div className="page wellnessPage"><section className="simpleHero"><span className="eyebrow">Your wellness profile</span><h1>Make My Dose<br/>feel more like yours.</h1><p>Short, optional questions help prioritize support, education, and progress experiences.</p></section><section className="quizCards"><article><span className="quizNumber">01</span><h3>Wellness goals</h3><p>Tell us what you care about and what kind of support works best.</p><button onClick={()=>startQuiz('goals')}>{quizCompleted.goals?'Retake quiz':'Start quiz'}</button></article><article><span className="quizNumber">02</span><h3>Routine check-in</h3><p>Tell us how your routine is going and whether you need help.</p><button onClick={()=>startQuiz('routine')}>{quizCompleted.routine?'Retake check-in':'Start check-in'}</button></article></section></div>;};
 
-  const Rewards=()=> <div className="page rewardsPage"><section className="simpleHero rewardsHero"><span className="eyebrow">Dose Rewards</span><h1>Your routine<br/>pays you back.</h1><p>Rewards reinforce useful behavior without outranking support, payment, or order issues.</p></section><section className="levelCard"><div className={`levelMedal ${tier.name.toLowerCase()}`}>{tier.name[0]}</div><div className="levelCopy"><span className="eyebrow">Member level</span><h2>{tier.name}</h2><p>{points.toLocaleString()} points · ${cashback} available</p></div></section><section className="badgeGrid">{badges.map(b=><article className={b.unlocked?'badgeCard unlocked':'badgeCard'} key={b.id}><div className="badgeMedal"><span>{b.unlocked?'✓':b.goal}</span></div><div className="badgeCopy"><span>{b.unlocked?'Unlocked':'In progress'}</span><h3>{b.name}</h3><small>{Math.min(b.value,b.goal)}/{b.goal}</small></div></article>)}</section><section className={`reviewCelebrationCard celebrationStage ${reviewed?'reviewComplete':''}`}><span className="eyebrow">Community Voice</span><h3>{reviewed?'Thanks for sharing your experience.':'Share your Dose experience.'}</h3><p>{reviewed?'Your review has been recorded in this prototype, and your Community Voice badge is now unlocked.':'Reviews help other members know what to expect. Reward the act of sharing, never the sentiment of the review.'}</p><span className="reviewRewardPill">+100 prototype points</span><div style={{marginTop:16}}><button onClick={()=>setReviewed(true)} disabled={reviewed}>{reviewed?'Review submitted':'Write a review'}</button></div><CelebrationBurst active={reviewed} label="Community Voice unlocked" /></section></div>;
+  const Rewards=()=> <div className="page rewardsPage"><section className="simpleHero rewardsHero"><span className="eyebrow">Dose Rewards</span><h1>Your routine<br/>pays you back.</h1><p>Rewards reinforce useful behavior without outranking support, payment, or order issues.</p></section><section className="badgePreviewCard"><div><span className="eyebrow">Preview interaction</span><h3>See a badge unlock moment.</h3><p>Full-screen badge reveal, motion, confetti, and a clear completion CTA.</p></div><button onClick={previewBadgeUnlock}>Preview unlock</button></section><section className="levelCard"><div className={`levelMedal ${tier.name.toLowerCase()}`}>{tier.name[0]}</div><div className="levelCopy"><span className="eyebrow">Member level</span><h2>{tier.name}</h2><p>{points.toLocaleString()} points · ${cashback} available</p></div></section><section className="badgeGrid">{badges.map(b=><article className={b.unlocked?'badgeCard unlocked':'badgeCard'} key={b.id}><div className="badgeMedal"><span>{b.unlocked?'✓':b.goal}</span></div><div className="badgeCopy"><span>{b.unlocked?'Unlocked':'In progress'}</span><h3>{b.name}</h3><small>{Math.min(b.value,b.goal)}/{b.goal}</small></div></article>)}</section><section className={`reviewCelebrationCard celebrationStage ${reviewed?'reviewComplete':''}`}><span className="eyebrow">Community Voice</span><h3>{reviewed?'Thanks for sharing your experience.':'Share your Dose experience.'}</h3><p>{reviewed?'Your review has been recorded in this prototype, and your Community Voice badge is now unlocked.':'Reviews help other members know what to expect. Reward the act of sharing, never the sentiment of the review.'}</p><span className="reviewRewardPill">+100 prototype points</span><div style={{marginTop:16}}><button onClick={submitReview} disabled={reviewed}>{reviewed?'Review submitted':'Write a review'}</button></div><CelebrationBurst active={reviewed} label="Community Voice unlocked" /></section></div>;
 
   const Discover=()=> <div className="page"><section className="simpleHero"><span className="eyebrow">Recommended for you</span><h1>Relevant, not intrusive.</h1><p>This recommendation is only shown when higher-priority support, payment, and order needs are clear.</p></section><article className="productDiscovery"><div className="productVisual"><span className="recommend">Recommended</span><img src={CHOL} alt="Dose for Cholesterol"/></div><div className="productInfo"><span className="eyebrow">Pairs with your liver routine</span><h2>Dose for Cholesterol</h2><p>Targeted support for healthy cholesterol levels and lipid processing.*</p><div className="productBottom"><div><small>Subscriber add-on</small><strong>From $63 / 24 days</strong></div><button onClick={()=>setAdded(!added)}>{added?'Added':'Add to next order'}</button></div></div></article></div>;
 
@@ -98,5 +109,5 @@ export default function Home(){
   else if(page==='Discover') content=<Discover/>;
   else content=<MemberPortal name="John" streak={currentStreak} points={points} cashback={cashback} onNavigate={go}/>;
 
-  return <main className="appShell"><Header/>{content}<nav className="bottomNav canonicalNav"><button className={page==='Today'?'active':''} onClick={()=>go('Today')}><span>⌂</span>Today</button><button className={page==='Journey'?'active':''} onClick={()=>go('Journey')}><span>◇</span>Journey</button><button className={page==='Learn'?'active':''} onClick={()=>go('Learn')}><span>□</span>Learn</button><button className={page==='Orders'?'active':''} onClick={()=>go('Orders')}><span>▣</span>Orders</button><button className={['You','Plan','Wellness','Rewards','Discover'].includes(page)?'active':''} onClick={()=>go('You')}><span>○</span>You</button></nav></main>;
+  return <><main className="appShell"><Header/>{content}<nav className="bottomNav canonicalNav"><button className={page==='Today'?'active':''} onClick={()=>go('Today')}><span>⌂</span>Today</button><button className={page==='Journey'?'active':''} onClick={()=>go('Journey')}><span>◇</span>Journey</button><button className={page==='Learn'?'active':''} onClick={()=>go('Learn')}><span>□</span>Learn</button><button className={page==='Orders'?'active':''} onClick={()=>go('Orders')}><span>▣</span>Orders</button><button className={['You','Plan','Wellness','Rewards','Discover'].includes(page)?'active':''} onClick={()=>go('You')}><span>○</span>You</button></nav></main><BadgeUnlockTakeover active={Boolean(badgeTakeover)} badge={badgeTakeover} onClose={()=>setBadgeTakeover(null)} /></>;
 }
