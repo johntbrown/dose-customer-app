@@ -1,0 +1,118 @@
+/* Purposeful celebration motion
+   Use only after meaningful customer actions: review submitted, milestone unlocked,
+   challenge completed, gift claimed. Never use for passive screen views. */
+
+.celebrationStage{position:relative;overflow:visible}
+.celebrationBurst{
+  position:absolute;
+  inset:50% auto auto 50%;
+  width:1px;
+  height:1px;
+  z-index:30;
+  pointer-events:none;
+}
+.celebrationHalo{
+  position:absolute;
+  width:74px;
+  height:74px;
+  margin:-37px 0 0 -37px;
+  border-radius:50%;
+  border:2px solid rgba(52,70,51,.18);
+  animation:celebrationHalo 900ms cubic-bezier(.2,.75,.2,1) both;
+}
+.celebrationStar{
+  --x:0px;
+  --y:-62px;
+  --r:0deg;
+  position:absolute;
+  left:-8px;
+  top:-8px;
+  width:16px;
+  height:16px;
+  display:grid;
+  place-items:center;
+  color:var(--dose-green,#344633);
+  font-size:15px;
+  line-height:1;
+  text-shadow:0 3px 10px rgba(52,70,51,.12);
+  opacity:0;
+  animation:starBurst 900ms cubic-bezier(.16,.78,.2,1) both;
+}
+.celebrationStar2{--x:30px;--y:-58px;--r:24deg;animation-delay:20ms}
+.celebrationStar3{--x:56px;--y:-37px;--r:42deg;animation-delay:40ms}
+.celebrationStar4{--x:66px;--y:-4px;--r:80deg;animation-delay:10ms}
+.celebrationStar5{--x:58px;--y:31px;--r:110deg;animation-delay:45ms}
+.celebrationStar6{--x:32px;--y:57px;--r:150deg;animation-delay:20ms}
+.celebrationStar7{--x:0px;--y:67px;--r:180deg;animation-delay:55ms}
+.celebrationStar8{--x:-33px;--y:57px;--r:210deg;animation-delay:25ms}
+.celebrationStar9{--x:-58px;--y:32px;--r:235deg;animation-delay:50ms}
+.celebrationStar10{--x:-68px;--y:-2px;--r:270deg;animation-delay:15ms}
+.celebrationStar11{--x:-57px;--y:-36px;--r:300deg;animation-delay:45ms}
+.celebrationStar12{--x:-31px;--y:-59px;--r:330deg;animation-delay:25ms}
+.celebrationStar13{--x:42px;--y:11px;--r:95deg;animation-delay:65ms;font-size:10px}
+.celebrationStar14{--x:-42px;--y:10px;--r:-95deg;animation-delay:70ms;font-size:10px}
+
+.celebrationMessage{
+  position:absolute;
+  left:50%;
+  top:50%;
+  min-width:max-content;
+  transform:translate(-50%,-50%) scale(.88);
+  padding:10px 14px;
+  border-radius:999px;
+  background:var(--dose-green,#344633);
+  color:#fff;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.01em;
+  box-shadow:0 14px 34px rgba(52,70,51,.18);
+  opacity:0;
+  animation:celebrationMessage 1150ms cubic-bezier(.2,.75,.2,1) both;
+}
+
+@keyframes starBurst{
+  0%{opacity:0;transform:translate(0,0) scale(.2) rotate(0deg)}
+  18%{opacity:1}
+  65%{opacity:1;transform:translate(var(--x),var(--y)) scale(1.15) rotate(var(--r))}
+  100%{opacity:0;transform:translate(calc(var(--x) * 1.12),calc(var(--y) * 1.12)) scale(.55) rotate(calc(var(--r) + 45deg))}
+}
+@keyframes celebrationHalo{
+  0%{opacity:0;transform:scale(.3)}
+  30%{opacity:1}
+  100%{opacity:0;transform:scale(1.85)}
+}
+@keyframes celebrationMessage{
+  0%,14%{opacity:0;transform:translate(-50%,-50%) scale(.82)}
+  28%,72%{opacity:1;transform:translate(-50%,-50%) scale(1)}
+  100%{opacity:0;transform:translate(-50%,-58%) scale(.97)}
+}
+
+.reviewCelebrationCard{
+  position:relative;
+  overflow:visible!important;
+  margin-top:18px;
+  padding:22px;
+  background:linear-gradient(155deg,#fff,#F3EEE4)!important;
+  border:1px solid var(--dose-line,rgba(52,70,51,.12));
+  border-radius:var(--dose-radius-lg,28px);
+  box-shadow:var(--dose-shadow-1,0 4px 16px rgba(31,41,31,.055));
+}
+.reviewCelebrationCard h3{font-family:var(--font-display,Georgia,serif);font-size:28px;font-weight:400;letter-spacing:-.03em;margin:5px 0 8px}
+.reviewCelebrationCard p{color:var(--dose-muted,#70766F);font-size:12px;line-height:1.55;margin:0 0 16px}
+.reviewCelebrationCard button{min-height:50px;padding:0 18px;border:0;border-radius:999px;background:var(--dose-green,#344633);color:#fff;font-weight:650;box-shadow:0 7px 18px rgba(52,70,51,.13)}
+.reviewCelebrationCard.reviewComplete{background:linear-gradient(155deg,#EFF3EC,#fff)!important}
+.reviewCelebrationCard.reviewComplete button{background:#fff;color:var(--dose-green,#344633);border:1px solid var(--dose-line-strong,rgba(52,70,51,.22));box-shadow:none}
+.reviewRewardPill{display:inline-flex;align-items:center;gap:6px;padding:7px 10px;border-radius:999px;background:rgba(52,70,51,.08);color:var(--dose-green,#344633);font-size:10px;font-weight:700}
+
+/* Milestone affordance can be reused without the star explosion. */
+.milestoneGlow{animation:milestoneGlow 900ms ease both}
+@keyframes milestoneGlow{
+  0%{box-shadow:0 0 0 rgba(52,70,51,0)}
+  40%{box-shadow:0 0 0 8px rgba(52,70,51,.09)}
+  100%{box-shadow:0 0 0 rgba(52,70,51,0)}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .celebrationStar,.celebrationHalo{display:none!important}
+  .celebrationMessage{animation:none!important;opacity:1!important;transform:translate(-50%,-50%)!important}
+}

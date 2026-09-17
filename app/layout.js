@@ -8,6 +8,20 @@ import './wellness.css';
 import './native-polish.css';
 import './icon-system.css';
 import './features.css';
+import './priority-home.css';
+import './journey-integrated.css';
+import './you-hub.css';
+import './celebrations.css';
+import './badge-takeover.css';
+import './milestone-celebration.css';
+import './demo-controls.css';
+import './experience-polish.css';
+import './design-foundation.css';
+import './experience-state.css';
+import './boot-polish.css';
+import './interaction-polish.css';
+import ExperienceShell from './components/ExperienceShell';
+import InteractionProvider from './components/InteractionProvider';
 
 export const metadata = {
   title: 'My Dose',
@@ -20,7 +34,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body><InteractionProvider><ExperienceShell>{children}</ExperienceShell></InteractionProvider></body>
     </html>
   );
 }
